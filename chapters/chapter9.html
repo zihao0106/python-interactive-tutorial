@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第9章：字符串处理 - Python交互式教程</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">🐍 Python交互式教程</a>
+            <div class="navbar-nav ms-auto">
+                <span class="nav-link text-light">
+                    <span id="python-status">⏳ Python环境加载中...</span>
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-3">
+                <!-- 目录侧边栏 -->
+                <div class="sticky-top" style="top: 1rem;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6>📚 课程目录</h6>
+                        </div>
+                        <div class="card-body p-2">
+                            <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="chapter1.html">第1章：Python基础</a>
+                                <a class="nav-link" href="chapter2.html">第2章：变量与数据类型</a>
+                                <a class="nav-link" href="chapter3.html">第3章：运算符与表达式</a>
+                                <a class="nav-link" href="chapter4.html">第4章：控制结构</a>
+                                <a class="nav-link" href="chapter5.html">第5章：列表与元组</a>
+                                <a class="nav-link" href="chapter6.html">第6章：字典与集合</a>
+                                <a class="nav-link" href="chapter7.html">第7章：函数</a>
+                                <a class="nav-link" href="chapter8.html">第8章：模块与包</a>
+                                <a class="nav-link active" href="chapter9.html">第9章：字符串处理</a>
+                                <a class="nav-link" href="chapter10.html">第10章：正则表达式</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-9">
+                <main>
+                    <!-- 章节标题 -->
+                    <div class="chapter-header">
+                        <h1>📝 第9章：字符串处理</h1>
+                        <p class="lead">深入学习Python中的字符串操作，掌握文本处理的各种技巧。</p>
+                    </div>
+
+                    <!-- 学习目标 -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5>🎯 学习目标</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li>掌握字符串的创建和基本操作</li>
+                                <li>学会字符串的索引和切片</li>
+                                <li>熟练使用字符串的常用方法</li>
+                                <li>理解字符串格式化的多种方式</li>
+                                <li>学会处理多行字符串和转义字符</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 知识点1：字符串基础 -->
+                    <section class="mb-4">
+                        <h3>📖 字符串基础</h3>
+                        <p>字符串是由字符组成的序列，在Python中用引号包围。</p>
+                        
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 字符串创建和基本操作</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 字符串的创建
+str1 = "Hello"
+str2 = 'World'
+str3 = """多行
+字符串
+示例"""
+str4 = '''另一种
+多行字符串'''
+
+print("单引号字符串:", str2)
+print("双引号字符串:", str1)
+print("多行字符串1:")
+print(str3)
+print("多行字符串2:")
+print(str4)
+
+# 字符串连接
+greeting = str1 + " " + str2
+print("连接后:", greeting)
+
+# 字符串重复
+repeated = "Ha" * 3
+print("重复字符串:", repeated)
+
+# 字符串长度
+text = "Python编程"
+print("字符串长度:", len(text))
+
+# 检查字符串包含
+sentence = "我喜欢学习Python编程"
+print("包含'Python':", "Python" in sentence)
+print("不包含'Java':", "Java" not in sentence)</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 知识点2：字符串索引和切片 -->
+                    <section class="mb-4">
+                        <h3>🔍 字符串索引和切片</h3>
+                        <p>可以通过索引访问字符串中的单个字符，通过切片获取子字符串。</p>
+                        
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 索引和切片示例</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 字符串索引
+text = "Python"
+print("原字符串:", text)
+print("第一个字符:", text[0])     # P
+print("第二个字符:", text[1])     # y
+print("最后一个字符:", text[-1])  # n
+print("倒数第二个:", text[-2])    # o
+
+# 字符串切片
+sentence = "Hello, Python World!"
+print("\n原句子:", sentence)
+print("前5个字符:", sentence[0:5])      # Hello
+print("简化写法:", sentence[:5])        # Hello
+print("从第7个到结尾:", sentence[7:])   # Python World!
+print("中间部分:", sentence[7:13])      # Python
+print("每隔一个字符:", sentence[::2])   # Hlo yhnWrd
+print("反转字符串:", sentence[::-1])     # !dlroW nohtyP ,olleH
+
+# 实际应用：提取信息
+email = "user@example.com"
+username = email[:email.find('@')]
+domain = email[email.find('@')+1:]
+print(f"\n邮箱: {email}")
+print(f"用户名: {username}")
+print(f"域名: {domain}")
+
+# 处理中文字符串
+chinese = "我爱学习Python"
+print(f"\n中文字符串: {chinese}")
+print(f"第一个字: {chinese[0]}")
+print(f"前三个字: {chinese[:3]}")
+print(f"最后两个字: {chinese[-2:]}")</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 知识点3：字符串方法 -->
+                    <section class="mb-4">
+                        <h3>🛠️ 常用字符串方法</h3>
+                        <p>Python提供了丰富的字符串方法来处理文本。</p>
+                        
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 字符串方法示例</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 大小写转换
+text = "Hello Python World"
+print("原字符串:", text)
+print("转大写:", text.upper())
+print("转小写:", text.lower())
+print("首字母大写:", text.capitalize())
+print("每单词首字母大写:", text.title())
+print("大小写互换:", text.swapcase())
+
+print()
+
+# 去除空白
+messy = "  hello world  "
+print("原字符串:", repr(messy))
+print("去除两端空白:", repr(messy.strip()))
+print("去除左边空白:", repr(messy.lstrip()))
+print("去除右边空白:", repr(messy.rstrip()))
+
+print()
+
+# 查找和替换
+sentence = "Python是一门优秀的编程语言，Python很强大"
+print("原句子:", sentence)
+print("查找'Python'位置:", sentence.find('Python'))
+print("查找'Java'位置:", sentence.find('Java'))  # 返回-1表示未找到
+print("计算'Python'出现次数:", sentence.count('Python'))
+print("替换'Python'为'Java':", sentence.replace('Python', 'Java'))
+print("只替换第一个:", sentence.replace('Python', 'Java', 1))
+
+print()
+
+# 字符串判断
+test_strings = ["hello123", "HELLO", "123", "Hello World", ""]
+for s in test_strings:
+    print(f"'{s}':")
+    print(f"  是否全为字母: {s.isalpha()}")
+    print(f"  是否全为数字: {s.isdigit()}")
+    print(f"  是否为字母数字: {s.isalnum()}")
+    print(f"  是否全为大写: {s.isupper()}")
+    print(f"  是否全为小写: {s.islower()}")
+    print(f"  是否为空: {s == ''}")
+    print()</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 知识点4：字符串分割和连接 -->
+                    <section class="mb-4">
+                        <h3>✂️ 字符串分割和连接</h3>
+                        <p>学会如何分割字符串和连接字符串列表。</p>
+                        
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 分割和连接示例</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 字符串分割
+text = "苹果,香蕉,橙子,葡萄"
+fruits = text.split(',')
+print("原字符串:", text)
+print("分割后:", fruits)
+print("类型:", type(fruits))
+
+# 按空格分割
+sentence = "Python 是 一门 编程 语言"
+words = sentence.split()  # 默认按空白字符分割
+print("\n句子:", sentence)
+print("单词列表:", words)
+
+# 按行分割
+multi_line = """第一行
+第二行
+第三行"""
+lines = multi_line.split('\n')
+print("\n多行文本分割:")
+for i, line in enumerate(lines, 1):
+    print(f"第{i}行: {line}")
+
+# 字符串连接
+print("\n字符串连接:")
+words = ['Hello', 'Python', 'World']
+joined = ' '.join(words)
+print("单词列表:", words)
+print("用空格连接:", joined)
+
+# 用不同分隔符连接
+print("用'-'连接:", '-'.join(words))
+print("用','连接:", ','.join(words))
+
+# 实际应用：处理CSV数据
+csv_line = "张三,25,男,北京"
+fields = csv_line.split(',')
+name, age, gender, city = fields
+print(f"\n姓名: {name}, 年龄: {age}, 性别: {gender}, 城市: {city}")
+
+# 构造新的CSV行
+new_record = [name, str(int(age) + 1), gender, city]
+new_csv_line = ','.join(new_record)
+print("更新后:", new_csv_line)</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 知识点5：字符串格式化 -->
+                    <section class="mb-4">
+                        <h3>🎨 字符串格式化</h3>
+                        <p>Python提供了多种字符串格式化方法，让输出更加美观和灵活。</p>
+                        
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 字符串格式化示例</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># f-string格式化（推荐）
+name = "张三"
+age = 25
+score = 95.5
+
+print("=== f-string格式化 ===")
+print(f"姓名: {name}")
+print(f"年龄: {age}")
+print(f"成绩: {score}")
+print(f"{name}今年{age}岁，考了{score}分")
+
+# 格式化数字
+pi = 3.14159
+print(f"π的值: {pi:.2f}")  # 保留2位小数
+print(f"π的值: {pi:.4f}")  # 保留4位小数
+
+# 格式化百分比
+percentage = 0.875
+print(f"正确率: {percentage:.1%}")
+
+# 格式化整数
+number = 1234567
+print(f"带分隔符: {number:,}")
+print(f"16进制: {number:x}")
+print(f"二进制: {number:b}")
+
+print("\n=== format()方法 ===")
+template = "姓名: {}, 年龄: {}, 成绩: {}"
+result = template.format(name, age, score)
+print(result)
+
+# 使用位置参数
+template2 = "姓名: {0}, 年龄: {1}, 成绩: {2}, {0}很优秀"
+result2 = template2.format(name, age, score)
+print(result2)
+
+# 使用关键字参数
+template3 = "姓名: {n}, 年龄: {a}, 成绩: {s}"
+result3 = template3.format(n=name, a=age, s=score)
+print(result3)
+
+print("\n=== %格式化（旧式） ===")
+print("姓名: %s, 年龄: %d, 成绩: %.1f" % (name, age, score))
+
+print("\n=== 实际应用：报表生成 ===")
+students = [
+    {"name": "张三", "math": 95, "english": 87},
+    {"name": "李四", "math": 88, "english": 92},
+    {"name": "王五", "math": 76, "english": 89}
+]
+
+print("学生成绩报表")
+print("-" * 30)
+print(f"{'姓名':^6} {'数学':^6} {'英语':^6} {'总分':^6}")
+print("-" * 30)
+
+for student in students:
+    total = student['math'] + student['english']
+    print(f"{student['name']:^6} {student['math']:^6} {student['english']:^6} {total:^6}")
+
+print("-" * 30)</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 知识点6：转义字符 -->
+                    <section class="mb-4">
+                        <h3>🔤 转义字符</h3>
+                        <p>转义字符用于在字符串中表示特殊字符。</p>
+                        
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 转义字符示例</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 常用转义字符
+print("常用转义字符:")
+print("换行符: Hello\\nWorld")
+print("制表符: Name\\tAge")
+print("反斜杠: C:\\\\Users")
+print("单引号: It\\'s a beautiful day")
+print("双引号: He said \\"Hello\\"")
+
+print("\n实际效果:")
+print("Hello\nWorld")
+print("Name\tAge\tCity")
+print("姓名\t年龄\t城市")
+print("张三\t25\t北京")
+
+# 原始字符串（r-string）
+print("\n原始字符串:")
+path1 = "C:\\Users\\Documents\\file.txt"  # 需要转义
+path2 = r"C:\Users\Documents\file.txt"     # 原始字符串，不需要转义
+print("转义方式:", path1)
+print("原始字符串:", path2)
+
+# Unicode字符
+print("\nUnicode字符:")
+print("心形: \\u2764 →", "\u2764")
+print("笑脸: \\u1F60A →", "\U0001F60A")
+print("中文: \\u4E2D\\u6587 →", "\u4E2D\u6587")
+
+# 多行字符串的不同写法
+print("\n多行字符串:")
+# 方式1：使用三引号
+multi1 = """第一行
+第二行
+第三行"""
+
+# 方式2：使用转义字符
+multi2 = "第一行\n第二行\n第三行"
+
+# 方式3：使用括号连接
+multi3 = ("第一行\n"
+          "第二行\n"
+          "第三行")
+
+print("方式1（三引号）:")
+print(multi1)
+print("\n方式2（转义字符）:")
+print(multi2)
+print("\n方式3（括号连接）:")
+print(multi3)</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 实践练习 -->
+                    <section class="mb-4">
+                        <h3>💪 实践练习</h3>
+                        <div class="card">
+                            <div class="card-header">
+                                <h6>练习1：文本处理工具</h6>
+                            </div>
+                            <div class="card-body">
+                                <p>创建一个简单的文本处理工具：</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-header">
+                                        <span>💻 练习代码</span>
+                                        <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                                    </div>
+                                    <pre><code class="language-python"># 文本处理工具
+def text_analyzer(text):
+    """分析文本的各种属性"""
+    print("=== 文本分析工具 ===")
+    print(f"原文本: {text}")
+    print(f"文本长度: {len(text)}")
+    
+    # 基本统计
+    char_count = len(text)
+    word_count = len(text.split())
+    line_count = len(text.split('\n'))
+    
+    print(f"字符数: {char_count}")
+    print(f"单词数: {word_count}")
+    print(f"行数: {line_count}")
+    
+    # 字符统计
+    letters = sum(1 for c in text if c.isalpha())
+    digits = sum(1 for c in text if c.isdigit())
+    spaces = sum(1 for c in text if c.isspace())
+    
+    print(f"字母数: {letters}")
+    print(f"数字数: {digits}")
+    print(f"空白字符数: {spaces}")
+    
+    return {
+        'char_count': char_count,
+        'word_count': word_count,
+        'line_count': line_count,
+        'letters': letters,
+        'digits': digits,
+        'spaces': spaces
+    }
+
+def format_name(full_name):
+    """格式化姓名"""
+    # 去除多余空白并分割
+    parts = full_name.strip().split()
+    if len(parts) >= 2:
+        first_name = parts[0]
+        last_name = ' '.join(parts[1:])
+        return f"姓: {last_name}, 名: {first_name}"
+    else:
+        return f"姓名: {full_name}"
+
+def clean_text(text):
+    """清理文本"""
+    # 去除多余空白
+    cleaned = ' '.join(text.split())
+    # 移除特殊字符（保留中文、英文、数字、基本标点）
+    import re
+    cleaned = re.sub(r'[^\w\s\u4e00-\u9fff.,!?;:]', '', cleaned)
+    return cleaned
+
+def word_frequency(text):
+    """统计词频"""
+    words = text.lower().split()
+    frequency = {}
+    
+    for word in words:
+        # 移除标点符号
+        clean_word = word.strip('.,!?;:"')
+        if clean_word:
+            frequency[clean_word] = frequency.get(clean_word, 0) + 1
+    
+    # 按频率排序
+    sorted_words = sorted(frequency.items(), key=lambda x: x[1], reverse=True)
+    return sorted_words
+
+# 测试文本处理工具
+sample_text = """Python是一种强大的编程语言。
+它简单易学，功能丰富。
+很多公司都在使用Python开发项目。
+Python Python Python！"""
+
+print("1. 文本分析:")
+stats = text_analyzer(sample_text)
+
+print("\n2. 姓名格式化:")
+names = ["张 三", "李四", "王  五  六"]
+for name in names:
+    print(f"原姓名: '{name}' → {format_name(name)}")
+
+print("\n3. 文本清理:")
+messy_text = "Hello!!!   这是一个    测试@@@文本   ..."
+print(f"原文本: {messy_text}")
+print(f"清理后: {clean_text(messy_text)}")
+
+print("\n4. 词频统计:")
+word_freq = word_frequency(sample_text)
+print("词频统计结果:")
+for word, freq in word_freq[:5]:  # 显示前5个
+    print(f"  '{word}': {freq}次")
+
+print("\n5. 字符串美化:")
+title = "python编程教程"
+print(f"原标题: {title}")
+print(f"标题格式: {title.title()}")
+print(f"居中显示: {title.center(20, '=')}")
+print(f"左对齐: {title.ljust(15, '.')}")
+print(f"右对齐: {title.rjust(15, '.')}")</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 章节总结 -->
+                    <section class="mb-4">
+                        <div class="card bg-light">
+                            <div class="card-header">
+                                <h5>📋 本章总结</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li><strong>字符串创建</strong>：单引号、双引号、三引号</li>
+                                    <li><strong>索引切片</strong>：str[i]、str[start:end:step]</li>
+                                    <li><strong>常用方法</strong>：upper/lower、strip、find/replace、split/join</li>
+                                    <li><strong>字符串格式化</strong>：f-string、format()、%格式化</li>
+                                    <li><strong>转义字符</strong>：\n、\t、\\、原始字符串r""</li>
+                                    <li><strong>字符串判断</strong>：isalpha、isdigit、isalnum等</li>
+                                    <li>字符串是不可变对象，操作会返回新字符串</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 导航按钮 -->
+                    <div class="d-flex justify-content-between mb-4">
+                        <a href="chapter8.html" class="btn btn-outline-primary">← 上一章：模块与包</a>
+                        <a href="chapter10.html" class="btn btn-primary">下一章：正则表达式 →</a>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入必要的JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <script src="../assets/js/tutorial-interactive.js"></script>
+</body>
+</html>

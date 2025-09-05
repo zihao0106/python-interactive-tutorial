@@ -1,0 +1,322 @@
+/* 全局样式 */
+:root {
+    --primary-color: #007bff;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --info-color: #17a2b8;
+    --light-bg: #f8f9fa;
+    --code-bg: #f8f8f8;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+}
+
+/* 首页样式 */
+.hero-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.feature-item {
+    display: block;
+    margin: 10px 0;
+}
+
+.demo-code-block {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    color: #333; /* 重置文字颜色 */
+}
+
+.code-header {
+    background: #2d3748;
+    color: white;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.code-title {
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+/* 章节页面样式 */
+.chapter-header {
+    background: var(--light-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    border-left: 5px solid var(--primary-color);
+}
+
+.learning-objectives {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    border: 1px solid #dee2e6;
+}
+
+.content-section {
+    margin: 2rem 0;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+/* 代码块样式 */
+.code-example {
+    margin: 1.5rem 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.example-header {
+    background: #f1f3f4;
+    padding: 8px 15px;
+    border-bottom: 1px solid #ddd;
+    font-weight: 500;
+}
+
+pre {
+    background: var(--code-bg) !important;
+    border: none !important;
+    margin: 0 !important;
+    position: relative;
+    color: #333 !important; /* 确保代码文字颜色为深色 */
+}
+
+pre code {
+    background: transparent !important;
+    color: #333 !important; /* 确保代码文字颜色为深色 */
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+/* 首页演示代码块特殊样式 */
+.demo-code-block pre {
+    background: #f8f8f8 !important;
+    color: #333 !important;
+    padding: 1rem;
+}
+
+.demo-code-block pre code {
+    color: #333 !important;
+}
+
+.demo-code-block * {
+    color: #333 !important; /* 强制所有子元素使用深色文字 */
+}
+
+.demo-code-block .code-header * {
+    color: white !important; /* 标题栏保持白色文字 */
+}
+
+/* 演示代码输出区域样式 */
+.output-area {
+    border-top: 1px solid #ddd;
+    background: #f8f9fa;
+}
+
+.output-header {
+    background: #e9ecef;
+    padding: 8px 15px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.output-content {
+    background: white !important;
+    color: #333 !important;
+    margin: 0 !important;
+    padding: 15px !important;
+    border: none !important;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace !important;
+    white-space: pre-wrap;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.loading-area {
+    background: #f8f9fa;
+    border-top: 1px solid #ddd;
+    color: #666;
+}
+
+/* 基本的Python语法高亮 */
+.language-python .token.comment {
+    color: #6a737d;
+    font-style: italic;
+}
+
+.language-python .token.string {
+    color: #032f62;
+}
+
+.language-python .token.number {
+    color: #005cc5;
+}
+
+.language-python .token.keyword {
+    color: #d73a49;
+    font-weight: bold;
+}
+
+.language-python .token.function {
+    color: #6f42c1;
+}
+
+.language-python .token.operator {
+    color: #d73a49;
+}
+
+.copy-button, .run-button {
+    position: absolute;
+    top: 10px;
+    z-index: 10;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.copy-button {
+    right: 50px;
+}
+
+.run-button {
+    right: 10px;
+}
+
+pre:hover .copy-button,
+pre:hover .run-button {
+    opacity: 1;
+}
+
+/* 提示框样式 */
+.tip-box {
+    background: #d1ecf1;
+    border-left: 4px solid var(--info-color);
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 0 5px 5px 0;
+}
+
+.exercise-box {
+    background: #fff3cd;
+    border-left: 4px solid var(--warning-color);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.solution-box {
+    background: #d4edda;
+    border-left: 4px solid var(--success-color);
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 0 5px 5px 0;
+}
+
+.solution-box summary {
+    cursor: pointer;
+    font-weight: 500;
+    padding: 5px 0;
+}
+
+/* 导航样式 */
+.chapter-navigation {
+    margin: 3rem 0;
+    padding: 2rem 0;
+    border-top: 2px solid #eee;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .chapter-header {
+        padding: 1.5rem;
+    }
+    
+    .code-example pre {
+        font-size: 14px;
+    }
+    
+    .copy-button, .run-button {
+        top: 5px;
+        padding: 2px 6px;
+        font-size: 12px;
+    }
+}
+
+/* ThebeLab 相关样式 */
+.thebe-activate-button {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.thebe-status-field {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 5px 10px;
+    background: #f8f9fa;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+/* 代码输出区域 */
+.jp-OutputArea {
+    background: white;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    padding: 10px;
+}
+
+.jp-OutputArea-output {
+    margin: 5px 0;
+}
+
+.jp-OutputArea-executeResult {
+    background: #f8f9fa;
+    padding: 8px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+}
+
+/* 错误输出样式 */
+.jp-OutputArea-output[data-mime-type*="error"] {
+    background: #f8d7da;
+    color: #721c24;
+    border-left: 4px solid var(--danger-color);
+    padding: 10px;
+    border-radius: 4px;
+}
+
+/* 成功状态指示器 */
+.thebe-status-building {
+    background: var(--warning-color);
+    color: white;
+}
+
+.thebe-status-ready {
+    background: var(--success-color);
+    color: white;
+}
+
+/* 版本: 2025-09-04 强制代码文字可见 */

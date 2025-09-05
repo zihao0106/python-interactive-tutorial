@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <titl                    </div>
+                </div>
+
+                <!-- 数据管理中心 -->
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h5>📊 数据管理中心</h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- 文件上传区域 -->
+                        <div class="upload-section mb-3">
+                            <h6>📁 上传您的数据文件</h6>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <input type="file" class="form-control" id="fileInput" 
+                                           accept=".txt,.csv,.json,.py" multiple
+                                           title="支持 CSV, JSON, TXT, PY 文件">
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-success w-100" onclick="processUploadedFiles()">
+                                        📤 处理上传文件
+                                    </button>
+                                </div>
+                            </div>
+                            <small class="text-muted">支持格式: CSV, JSON, TXT, PY | 最大单文件: 5MB</small>
+                            <div id="uploadedFilesList" class="mt-2"></div>
+                        </div>
+                        
+                        <!-- GitHub数据区域 -->
+                        <div class="github-data-section mb-3">
+                            <h6>🏫 GitHub预设数据集</h6>
+                            <div class="row">
+                                <div class="col-md-3 mb-2">
+                                    <button class="btn btn-outline-primary btn-sm w-100" onclick="loadAllGithubData()">
+                                        📚 加载全部
+                                    </button>
+                                </div>
+                                <div class="col-md-3 mb-2">
+                                    <button class="btn btn-outline-info btn-sm w-100" onclick="loadStudentData()">
+                                        👥 学生数据
+                                    </button>
+                                </div>
+                                <div class="col-md-3 mb-2">
+                                    <button class="btn btn-outline-warning btn-sm w-100" onclick="loadSalesData()">
+                                        💰 销售数据
+                                    </button>
+                                </div>
+                                <div class="col-md-3 mb-2">
+                                    <button class="btn btn-outline-secondary btn-sm w-100" onclick="loadWeatherData()">
+                                        🌤️ 天气数据
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 数据操作区域 -->
+                        <div class="data-operations">
+                            <h6>🛠️ 数据操作</h6>
+                            <div class="row">
+                                <div class="col-md-4 mb-2">
+                                    <button class="btn btn-outline-success btn-sm w-100" onclick="listAllData()">
+                                        📋 查看所有数据
+                                    </button>
+                                </div>
+                                <div class="col-md-4 mb-2">
+                                    <button class="btn btn-outline-primary btn-sm w-100" onclick="showDataExamples()">
+                                        💡 使用示例
+                                    </button>
+                                </div>
+                                <div class="col-md-4 mb-2">
+                                    <button class="btn btn-outline-danger btn-sm w-100" onclick="clearAllUploadedData()">
+                                        🗑️ 清空上传
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">thon在线编程环境</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/monokai.min.css">
+    <style>
+        body {
+            background: #f8f9fa;
+        }
+        .editor-container {
+            height: 400px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .output-container {
+            background: #1e1e1e;
+            color: #fff;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            max-height: 300px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+        .toolbar {
+            background: #343a40;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .status-indicator {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .status-ready {
+            background: #28a745;
+            color: white;
+        }
+        .status-loading {
+            background: #ffc107;
+            color: #212529;
+        }
+        .status-error {
+            background: #dc3545;
+            color: white;
+        }
+        .example-tabs {
+            margin-bottom: 20px;
+        }
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+        .loading-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+        }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- 加载覆盖层 -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <h5>正在加载Python环境...</h5>
+            <p class="text-muted">首次加载需要一些时间，请稍候</p>
+            <div class="progress mt-3">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%" id="loadingProgress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                🐍 Python教程
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="index.html">
+                    🏠 返回主页
+                </a>
+                <a class="nav-link" href="chapters/chapter1.html">
+                    📚 教程
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <!-- 侧边栏 -->
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h6>📚 示例代码</h6>
+                    </div>
+                    <div class="card-body p-2">
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-primary btn-sm" onclick="loadExample('hello')">
+                                👋 Hello World
+                            </button>
+                            <button class="btn btn-outline-primary btn-sm" onclick="loadExample('variables')">
+                                📝 变量和类型
+                            </button>
+                            <button class="btn btn-outline-primary btn-sm" onclick="loadExample('lists')">
+                                📋 列表操作
+                            </button>
+                            <button class="btn btn-outline-primary btn-sm" onclick="loadExample('loops')">
+                                🔄 循环控制
+                            </button>
+                            <button class="btn btn-outline-primary btn-sm" onclick="loadExample('functions')">
+                                ⚡ 函数定义
+                            </button>
+                            <button class="btn btn-outline-primary btn-sm" onclick="loadExample('data')">
+                                📊 数据分析
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h6>🛠️ 工具</h6>
+                    </div>
+                    <div class="card-body p-2">
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-secondary btn-sm" onclick="clearOutput()">
+                                🗑️ 清除输出
+                            </button>
+                            <button class="btn btn-outline-secondary btn-sm" onclick="clearEditor()">
+                                📄 清空编辑器
+                            </button>
+                            <button class="btn btn-outline-info btn-sm" onclick="downloadCode()">
+                                💾 下载代码
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 主编辑区 -->
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="toolbar">
+                        <div>
+                            <strong>🐍 Python在线编程环境</strong>
+                            <span id="statusIndicator" class="status-indicator status-loading ms-2">加载中...</span>
+                        </div>
+                        <div>
+                            <button id="runBtn" class="btn btn-success btn-sm" onclick="runCode()" disabled>
+                                ▶️ 运行代码 (Ctrl+Enter)
+                            </button>
+                        </div>
+                    </div>
+                    <div class="editor-container">
+                        <textarea id="codeEditor"># 欢迎使用Python在线编程环境！
+# 在这里编写你的Python代码，然后点击"运行代码"按钮
+
+print("Hello, Python World!")
+print("这是一个快速、轻量级的Python编程环境")
+
+# 试试数学计算
+result = 2 ** 10
+print(f"2的10次方是: {result}")
+
+# 试试循环
+for i in range(5):
+    print(f"计数: {i + 1}")
+</textarea>
+                    </div>
+                </div>
+
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <strong>📋 输出结果</strong>
+                        <button class="btn btn-outline-secondary btn-sm float-end" onclick="clearOutput()">清除</button>
+                    </div>
+                    <div class="card-body p-0">
+                        <div id="output" class="output-container">
+                            点击"运行代码"按钮查看输出结果...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 脚本加载 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/python/python.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+
+    <script>
+        let pyodide = null;
+        let editor = null;
+        let isReady = false;
+
+        // 示例代码
+        const examples = {
+            hello: `# Hello World 示例
+print("Hello, Python World!")
+print("欢迎来到Python编程世界！")
+
+# 简单的变量和字符串操作
+name = "Python学习者"
+print(f"你好, {name}!")
+print("这是你的第一个Python程序！")`,
+
+            variables: `# 变量和数据类型示例
+# 字符串
+name = "Python学习者"
+message = f"欢迎你, {name}!"
+
+# 数字
+age = 25
+height = 175.5
+is_student = True
+
+# 打印信息
+print("个人信息:")
+print(f"姓名: {name}")
+print(f"年龄: {age}")
+print(f"身高: {height}cm")
+print(f"学生身份: {'是' if is_student else '不是'}学生")
+print(f"姓名类型: {type(name)}")
+print(f"年龄类型: {type(age)}")`,
+
+            lists: `# 列表操作示例
+# 创建列表
+fruits = ["苹果", "香蕉", "橙子", "葡萄"]
+numbers = [1, 2, 3, 4, 5]
+
+print("水果列表:", fruits)
+print("数字列表:", numbers)
+
+# 列表操作
+fruits.append("草莓")
+print("添加草莓后:", fruits)
+
+# 列表推导式
+squares = [x**2 for x in numbers]
+print("平方数:", squares)
+
+# 遍历列表
+print("\\n遍历水果:")
+for i, fruit in enumerate(fruits):
+    print(f"{i+1}. {fruit}")`,
+
+            loops: `# 循环控制示例
+print("=== for循环示例 ===")
+for i in range(1, 6):
+    print(f"第{i}次循环")
+
+print("\\n=== while循环示例 ===")
+count = 1
+while count <= 5:
+    print(f"计数: {count}")
+    count += 1
+
+print("\\n=== 嵌套循环 - 乘法表 ===")
+for i in range(1, 4):
+    for j in range(1, 4):
+        result = i * j
+        print(f"{i} × {j} = {result}")
+    print()  # 空行`,
+
+            functions: `# 函数定义示例
+def greet(name, age=18):
+    """问候函数"""
+    return f"你好，{name}！你今年{age}岁。"
+
+def calculate_area(length, width):
+    """计算矩形面积"""
+    area = length * width
+    return area
+
+def fibonacci(n):
+    """生成斐波那契数列"""
+    if n <= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+
+# 使用函数
+print(greet("小明"))
+print(greet("小红", 20))
+
+area = calculate_area(5, 3)
+print(f"矩形面积: {area}")
+
+print("\\n斐波那契数列前10项:")
+for i in range(10):
+    print(f"F({i}) = {fibonacci(i)}")`,
+
+            data: `# 数据分析示例（使用内置库）
+import json
+import math
+from collections import Counter
+
+# 模拟数据
+students = [
+    {"name": "张三", "age": 20, "score": 85},
+    {"name": "李四", "age": 19, "score": 92},
+    {"name": "王五", "age": 21, "score": 78},
+    {"name": "赵六", "age": 20, "score": 88},
+    {"name": "钱七", "age": 19, "score": 95}
+]
+
+print("学生数据分析:")
+print("=" * 30)
+
+# 基本统计
+scores = [s["score"] for s in students]
+avg_score = sum(scores) / len(scores)
+max_score = max(scores)
+min_score = min(scores)
+
+print(f"平均分: {avg_score:.2f}")
+print(f"最高分: {max_score}")
+print(f"最低分: {min_score}")
+
+# 年龄分布
+ages = [s["age"] for s in students]
+age_counter = Counter(ages)
+print(f"\\n年龄分布: {dict(age_counter)}")
+
+# 成绩等级
+print("\\n成绩等级:")
+for student in students:
+    score = student["score"]
+    if score >= 90:
+        grade = "优秀"
+    elif score >= 80:
+        grade = "良好"
+    elif score >= 70:
+        grade = "中等"
+    else:
+        grade = "需要努力"
+    
+    print(f"{student['name']}: {score}分 - {grade}")`
+        };
+
+        // 初始化编辑器
+        function initEditor() {
+            editor = CodeMirror.fromTextArea(document.getElementById('codeEditor'), {
+                mode: 'python',
+                theme: 'monokai',
+                lineNumbers: true,
+                indentUnit: 4,
+                lineWrapping: true,
+                extraKeys: {
+                    "Ctrl-Enter": runCode,
+                    "Cmd-Enter": runCode
+                }
+            });
+        }
+
+        // 初始化Pyodide
+        async function initPyodide() {
+            try {
+                updateProgress(20);
+                updateStatus('loading', '下载Python环境...');
+                
+                console.log('开始加载Pyodide...');
+                pyodide = await loadPyodide({
+                    indexURL: "https://cdn.jsdelivr.net/pyodide/v0.24.1/full/"
+                });
+                console.log('Pyodide加载成功');
+                
+                updateProgress(40);
+                updateStatus('loading', '安装必要的包...');
+                
+                // 安装必要的包
+                try {
+                    console.log('开始加载包...');
+                    await pyodide.loadPackage(["pandas", "numpy"]);
+                    console.log('核心包加载成功');
+                    
+                    // 尝试加载matplotlib（可选）
+                    try {
+                        await pyodide.loadPackage(["matplotlib"]);
+                        console.log('可视化包加载成功');
+                    } catch (matplotlibError) {
+                        console.warn('matplotlib加载失败，跳过可视化功能:', matplotlibError);
+                    }
+                } catch (packageError) {
+                    console.warn('核心包加载失败，将使用基础Python功能:', packageError);
+                    updateStatus('loading', '使用基础Python功能...');
+                }
+                
+                updateProgress(70);
+                updateStatus('loading', '配置Python环境...');
+                
+                console.log('开始配置Python环境...');
+                // 配置输出重定向和数据管理功能
+                pyodide.runPython(`
+import sys
+from io import StringIO
+
+# 尝试导入包，如果失败则提供友好提示
+try:
+    import pandas as pd
+    import numpy as np
+    import matplotlib.pyplot as plt
+    PACKAGES_AVAILABLE = True
+    print("📦 数据分析包已准备就绪")
+except ImportError as e:
+    PACKAGES_AVAILABLE = False
+    print("⚠️ 部分数据分析包未加载，基础功能仍可使用")
+    print(f"详细信息: {e}")
+
+import urllib.request
+import json
+
+class OutputCapture:
+    def __init__(self):
+        self.outputs = []
+    
+    def write(self, text):
+        self.outputs.append(text)
+    
+    def flush(self):
+        pass
+    
+    def get_output(self):
+        result = ''.join(self.outputs)
+        self.outputs = []
+        return result
+
+output_capture = OutputCapture()
+
+# 简单的input模拟，用于避免在浏览器中的阻塞问题
+def input(prompt=""):
+    print(f"{prompt}[模拟输入: 用户]")
+    return "用户"
+
+# 存储上传文件的全局字典
+uploaded_files = {}
+
+# GitHub数据加载函数
+def load_github_data(filename, data_type='csv'):
+    """
+    从GitHub仓库加载数据
+    filename: 文件名 (如 'students.csv')
+    data_type: 数据类型 ('csv', 'json', 'txt')
+    """
+    base_url = "https://raw.githubusercontent.com/adamhu/my-python-course/main/data/"
+    url = base_url + filename
+    
+    try:
+        if data_type == 'csv':
+            if PACKAGES_AVAILABLE:
+                return pd.read_csv(url)
+            else:
+                print("❌ pandas未加载，无法处理CSV文件")
+                return None
+        elif data_type == 'json':
+            response = urllib.request.urlopen(url)
+            return json.loads(response.read().decode())
+        elif data_type == 'txt':
+            response = urllib.request.urlopen(url)
+            return response.read().decode()
+        else:
+            print(f"❌ 不支持的数据类型: {data_type}")
+            return None
+    except Exception as e:
+        print(f"❌ GitHub数据加载失败: {str(e)}")
+        return None
+
+# 上传文件处理函数
+def load_uploaded_file(filename, data_type='csv'):
+    """
+    加载学生上传的文件
+    filename: 文件名
+    data_type: 数据类型 ('csv', 'json', 'txt')
+    """
+    if filename not in uploaded_files:
+        print(f"❌ 文件 '{filename}' 未找到，请先上传文件")
+        return None
+    
+    content = uploaded_files[filename]
+    
+    try:
+        if data_type == 'csv':
+            if PACKAGES_AVAILABLE:
+                return pd.read_csv(StringIO(content))
+            else:
+                print("❌ pandas未加载，无法处理CSV文件")
+                return None
+        elif data_type == 'json':
+            return json.loads(content)
+        elif data_type == 'txt':
+            return content
+        else:
+            print(f"❌ 不支持的数据类型: {data_type}")
+            return None
+    except Exception as e:
+        print(f"❌ 文件解析失败: {str(e)}")
+        return None
+
+# 显示所有可用数据
+def list_available_data():
+    """显示所有可用的数据源"""
+    print("📊 可用数据源:")
+    print("\\n🏫 GitHub预设数据集:")
+    print("  - students.csv (学生成绩数据)")
+    print("  - sales.csv (销售数据)")
+    print("  - weather.json (天气数据)")
+    
+    print("\\n📁 已上传的文件:")
+    if uploaded_files:
+        for filename in uploaded_files.keys():
+            size = len(uploaded_files[filename])
+            print(f"  - {filename} ({size} 字符)")
+    else:
+        print("  (暂无上传文件)")
+    
+    print("\\n💡 使用方法:")
+    print("  GitHub数据: df = load_github_data('students.csv', 'csv')")
+    print("  上传数据: df = load_uploaded_file('my_data.csv', 'csv')")
+
+# 快速加载GitHub示例数据
+def load_sample_data():
+    """加载GitHub示例数据集"""
+    if not PACKAGES_AVAILABLE:
+        print("❌ pandas未加载，无法加载CSV数据集")
+        print("💡 你仍可以加载JSON格式的天气数据:")
+        print("   weather_data = load_github_data('weather.json', 'json')")
+        return
+    
+    print("📊 正在加载GitHub示例数据...")
+    global df_students, df_sales, weather_data
+    
+    df_students = load_github_data('students.csv', 'csv')
+    if df_students is not None:
+        print("✅ 学生数据已加载为: df_students")
+    
+    df_sales = load_github_data('sales.csv', 'csv')
+    if df_sales is not None:
+        print("✅ 销售数据已加载为: df_sales")
+    
+    weather_data = load_github_data('weather.json', 'json')
+    if weather_data is not None:
+        print("✅ 天气数据已加载为: weather_data")
+
+print("🎉 数据处理功能已就绪!")
+print("📋 可用函数:")
+print("  - load_github_data(filename, data_type)")
+print("  - load_uploaded_file(filename, data_type)")
+print("  - load_sample_data()")
+print("  - list_available_data()")
+
+# 如果pandas不可用，提供基础示例数据
+if not PACKAGES_AVAILABLE:
+    print("\\n💡 pandas未加载，提供基础数据示例:")
+    print("   students_data = [{'name': '张三', 'math': 95, 'chinese': 87}]")
+    print("   可以使用基础Python进行数据处理")
+    
+    # 提供基础示例数据
+    students_data = [
+        {'name': '张三', 'math': 95, 'chinese': 87, 'english': 92},
+        {'name': '李四', 'math': 78, 'chinese': 85, 'english': 90},
+        {'name': '王五', 'math': 88, 'chinese': 93, 'english': 76}
+    ]
+    
+    sales_data = [
+        {'date': '2024-01-01', 'product': '笔记本电脑', 'sales': 25, 'revenue': 125000},
+        {'date': '2024-01-01', 'product': '台式机', 'sales': 15, 'revenue': 90000},
+        {'date': '2024-01-02', 'product': '笔记本电脑', 'sales': 22, 'revenue': 110000}
+    ]
+    
+    print("✅ 基础示例数据已准备: students_data, sales_data")
+`);
+                
+                updateProgress(100);
+                updateStatus('ready', 'Python环境就绪');
+                
+                console.log('Python环境配置完成');
+                isReady = true;
+                document.getElementById('runBtn').disabled = false;
+                hideLoading();
+                
+            } catch (error) {
+                console.error('Pyodide加载失败:', error);
+                console.error('错误详情:', error.stack);
+                updateStatus('error', `Python环境加载失败: ${error.message}`);
+                hideLoading();
+                
+                // 显示详细错误信息
+                document.getElementById('output').innerHTML = 
+                    `<div class="alert alert-danger">
+                        <h5>❌ Python环境加载失败</h5>
+                        <p><strong>错误信息:</strong> ${error.message}</p>
+                        <p><strong>可能的解决方案:</strong></p>
+                        <ul>
+                            <li>检查网络连接</li>
+                            <li>刷新页面重试</li>
+                            <li>尝试使用简化版本: <a href="python-simple.html" class="text-decoration-none">python-simple.html</a></li>
+                        </ul>
+                    </div>`;
+            }
+        }
+
+        // 更新进度条
+        function updateProgress(percent) {
+            document.getElementById('loadingProgress').style.width = percent + '%';
+        }
+
+        // 更新状态指示器
+        function updateStatus(status, text) {
+            const indicator = document.getElementById('statusIndicator');
+            indicator.className = `status-indicator status-${status}`;
+            indicator.textContent = text;
+        }
+
+        // 隐藏加载覆盖层
+        function hideLoading() {
+            document.getElementById('loadingOverlay').style.display = 'none';
+        }
+
+        // 运行代码
+        async function runCode() {
+            if (!isReady) {
+                alert('Python环境还未准备就绪，请稍候...');
+                return;
+            }
+
+            const code = editor.getValue();
+            const outputDiv = document.getElementById('output');
+            
+            try {
+                // 重定向输出
+                pyodide.runPython(`
+sys.stdout = output_capture
+sys.stderr = output_capture
+`);
+                
+                // 运行用户代码
+                pyodide.runPython(code);
+                
+                // 获取输出
+                const output = pyodide.runPython('output_capture.get_output()');
+                
+                // 恢复标准输出
+                pyodide.runPython(`
+sys.stdout = sys.__stdout__
+sys.stderr = sys.__stderr__
+`);
+                
+                // 显示结果
+                const timestamp = new Date().toLocaleTimeString();
+                outputDiv.textContent = `[${timestamp}] 运行完成:\\n${output || '(无输出)'}`;
+                
+            } catch (error) {
+                const timestamp = new Date().toLocaleTimeString();
+                outputDiv.textContent = `[${timestamp}] 运行错误:\\n${error.message}`;
+                outputDiv.style.color = '#ff6b6b';
+            }
+        }
+
+        // 加载示例代码
+        function loadExample(exampleName) {
+            if (examples[exampleName]) {
+                editor.setValue(examples[exampleName]);
+            }
+        }
+
+        // 清除输出
+        function clearOutput() {
+            document.getElementById('output').textContent = '输出已清除...';
+            document.getElementById('output').style.color = '#fff';
+        }
+
+        // 清空编辑器
+        function clearEditor() {
+            editor.setValue('# 在这里编写你的Python代码\nprint("Hello, World!")\nprint("欢迎来到Python编程世界！")');
+        }
+
+        // 下载代码
+        function downloadCode() {
+            const code = editor.getValue();
+            const blob = new Blob([code], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'my_python_code.py';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // 数据管理相关功能
+        function handleFileUpload() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                showMessage('❌ 请选择要上传的文件', 'error');
+                return;
+            }
+            
+            // 检查文件大小 (限制5MB)
+            if (file.size > 5 * 1024 * 1024) {
+                showMessage('❌ 文件大小不能超过5MB', 'error');
+                return;
+            }
+            
+            // 检查文件类型
+            const allowedTypes = ['.csv', '.json', '.txt'];
+            const fileExtension = file.name.toLowerCase().substring(file.name.lastIndexOf('.'));
+            if (!allowedTypes.includes(fileExtension)) {
+                showMessage('❌ 仅支持 CSV、JSON、TXT 格式文件', 'error');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const content = e.target.result;
+                
+                // 将文件内容传递给Python（处理单引号转义）
+                const escapedContent = content.replace(/'/g, "\\'").replace(/\n/g, "\\n");
+                
+                pyodide.runPython(`
+uploaded_files['${file.name}'] = '''${escapedContent}'''
+print(f"✅ 文件 '{file.name}' 上传成功! ({len(uploaded_files['${file.name}'])} 字符)")
+                `);
+                
+                updateOutput();
+                showMessage(`✅ 文件 "${file.name}" 上传成功!`, 'success');
+                updateFileList();
+            };
+            
+            reader.onerror = function() {
+                showMessage('❌ 文件读取失败', 'error');
+            };
+            
+            reader.readAsText(file);
+        }
+        
+        function loadGitHubData(filename) {
+            const dataType = filename.endsWith('.json') ? 'json' : 
+                           filename.endsWith('.csv') ? 'csv' : 'txt';
+            
+            pyodide.runPython(`
+data = load_github_data('${filename}', '${dataType}')
+if data is not None:
+    globals()['${filename.replace('.', '_')}'] = data
+    print(f"✅ GitHub数据 '{filename}' 已加载为变量: ${filename.replace('.', '_')}")
+    if hasattr(data, 'shape'):
+        print(f"📊 数据维度: {data.shape}")
+    elif isinstance(data, dict):
+        print(f"📊 数据键: {list(data.keys())}")
+`);
+            updateOutput();
+        }
+        
+        function loadSampleData() {
+            pyodide.runPython(`load_sample_data()`);
+            updateOutput();
+        }
+        
+        function showDataList() {
+            pyodide.runPython(`list_available_data()`);
+            updateOutput();
+        }
+        
+        function clearData() {
+            pyodide.runPython(`
+uploaded_files.clear()
+print("🗑️ 已清空所有上传的文件")
+            `);
+            updateOutput();
+            updateFileList();
+            showMessage('已清空所有数据', 'info');
+        }
+        
+        function updateOutput() {
+            // 获取Python输出并更新输出区域
+            const output = pyodide.runPython('output_capture.get_output()');
+            if (output) {
+                const outputDiv = document.getElementById('output');
+                const timestamp = new Date().toLocaleTimeString();
+                outputDiv.textContent = `[${timestamp}] ${output}`;
+                outputDiv.style.color = '#fff';
+            }
+        }
+        
+        function updateFileList() {
+            const fileList = document.getElementById('fileList');
+            
+            // 获取已上传文件列表
+            const fileNames = pyodide.runPython(`list(uploaded_files.keys())`);
+            
+            if (fileNames.length === 0) {
+                fileList.innerHTML = '<small class="text-muted">暂无上传文件</small>';
+            } else {
+                fileList.innerHTML = fileNames.map(name => 
+                    `<span class="badge bg-secondary me-1">${name}</span>`
+                ).join('');
+            }
+        }
+        
+        function showMessage(message, type = 'info') {
+            const messageDiv = document.getElementById('message');
+            const alertClass = type === 'error' ? 'alert-danger' : 
+                             type === 'success' ? 'alert-success' : 'alert-info';
+            
+            messageDiv.innerHTML = `<div class="alert ${alertClass} alert-dismissible fade show" role="alert">
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>`;
+            
+            // 自动隐藏消息
+            setTimeout(() => {
+                messageDiv.innerHTML = '';
+            }, 5000);
+        }
+
+        // 加载示例代码模板
+        function loadTemplate(type) {
+            let template = '';
+            
+            switch(type) {
+                case 'data-analysis':
+                    template = `# 数据分析示例
+# 1. 加载GitHub示例数据
+load_sample_data()
+
+# 2. 查看学生数据
+print(df_students.head())
+print(df_students.describe())
+
+# 3. 简单分析
+print("\\n各科目平均分:")
+print(df_students.groupby('Subject')['Score'].mean())
+
+# 4. 可视化
+import matplotlib.pyplot as plt
+df_students.groupby('Subject')['Score'].mean().plot(kind='bar')
+plt.title('各科目平均分')
+plt.ylabel('分数')
+plt.show()`;
+                    break;
+                    
+                case 'file-upload':
+                    template = `# 文件上传处理示例
+# 1. 显示所有可用数据
+list_available_data()
+
+# 2. 加载上传的CSV文件 (假设文件名为 my_data.csv)
+# df = load_uploaded_file('my_data.csv', 'csv')
+# print(df.head())
+
+# 3. 加载上传的JSON文件
+# data = load_uploaded_file('my_data.json', 'json')
+# print(data)`;
+                    break;
+                    
+                case 'basic-python':
+                    template = `# Python基础编程示例
+# 1. 变量和数据类型
+name = "张三"
+age = 18
+grades = [85, 92, 78, 96]
+
+print(f"姓名: {name}, 年龄: {age}")
+print(f"成绩: {grades}")
+print(f"平均分: {sum(grades)/len(grades):.1f}")
+
+# 2. 循环和条件
+for i, grade in enumerate(grades, 1):
+    if grade >= 90:
+        print(f"第{i}门课程: {grade}分 (优秀)")
+    elif grade >= 80:
+        print(f"第{i}门课程: {grade}分 (良好)")
+    else:
+        print(f"第{i}门课程: {grade}分 (需努力)")`;
+                    break;
+            }
+            
+            editor.setValue(template);
+        }
+
+        // 页面加载时初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            initEditor();
+            initPyodide();
+        });
+    </script>
+</body>
+</html>

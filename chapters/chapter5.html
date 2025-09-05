@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第5章：列表与元组 - Python交互式教程</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">🐍 Python交互式教程</a>
+            <div class="navbar-nav ms-auto">
+                <span class="nav-link text-light">
+                    <span id="python-status">⏳ Python环境加载中...</span>
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-3">
+                <!-- 目录侧边栏 -->
+                <div class="sticky-top" style="top: 1rem;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6>📚 课程目录</h6>
+                        </div>
+                        <div class="card-body p-2">
+                            <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="chapter1.html">第1章：Python基础</a>
+                                <a class="nav-link" href="chapter2.html">第2章：变量与数据类型</a>
+                                <a class="nav-link" href="chapter3.html">第3章：运算符与表达式</a>
+                                <a class="nav-link" href="chapter4.html">第4章：控制结构</a>
+                                <a class="nav-link active" href="chapter5.html">第5章：列表与元组</a>
+                                <a class="nav-link" href="chapter6.html">第6章：字典与集合</a>
+                                <a class="nav-link" href="chapter7.html">第7章：函数</a>
+                                <a class="nav-link" href="chapter8.html">第8章：模块与包</a>
+                                <a class="nav-link" href="chapter9.html">第9章：字符串处理</a>
+                                <a class="nav-link" href="chapter10.html">第10章：正则表达式</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-9">
+                <main>
+                    <h1>第5章：列表与元组</h1>
+
+                    <!-- 学习目标 -->
+                    <section class="mb-4">
+                        <div class="card bg-light">
+                            <div class="card-header">
+                                <h5>🎯 学习目标</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>理解列表和元组的概念与特点</li>
+                                    <li>掌握列表的创建和基本操作</li>
+                                    <li>学会使用列表的常用方法</li>
+                                    <li>理解元组的特点和使用场景</li>
+                                    <li>掌握列表推导式的使用</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 知识点1：列表基础 -->
+                    <section class="mb-4">
+                        <h2>📚 列表基础</h2>
+                        <p>列表（List）是Python中最常用的数据类型之一，用来存储多个数据项。列表是有序的、可变的，可以包含不同类型的数据。</p>
+
+                        <h3>创建列表</h3>
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 创建列表</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 创建空列表
+empty_list = []
+print("空列表:", empty_list)
+
+# 创建有元素的列表
+fruits = ["苹果", "香蕉", "橙子"]
+print("水果列表:", fruits)
+
+# 包含不同类型数据的列表
+mixed_list = [1, "hello", 3.14, True]
+print("混合列表:", mixed_list)
+
+# 使用list()函数创建列表
+numbers = list(range(1, 6))
+print("数字列表:", numbers)</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 知识点2：列表操作 -->
+                    <section class="mb-4">
+                        <h2>🔧 列表操作</h2>
+                        
+                        <h3>访问列表元素</h3>
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 访问列表元素</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python">fruits = ["苹果", "香蕉", "橙子", "葡萄", "西瓜"]
+
+# 正向索引（从0开始）
+print("第一个水果:", fruits[0])
+print("第三个水果:", fruits[2])
+
+# 负向索引（从-1开始）
+print("最后一个水果:", fruits[-1])
+print("倒数第二个:", fruits[-2])
+
+# 列表切片
+print("前三个水果:", fruits[:3])
+print("后两个水果:", fruits[-2:])
+print("中间的水果:", fruits[1:4])</code></pre>
+                        </div>
+
+                        <h3>修改列表</h3>
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 修改列表</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python">fruits = ["苹果", "香蕉", "橙子"]
+print("原始列表:", fruits)
+
+# 修改单个元素
+fruits[1] = "芒果"
+print("修改后:", fruits)
+
+# 修改多个元素
+fruits[0:2] = ["草莓", "樱桃"]
+print("批量修改:", fruits)</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 知识点3：列表方法 -->
+                    <section class="mb-4">
+                        <h2>📋 列表方法</h2>
+                        
+                        <h3>添加元素</h3>
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 添加元素</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python">fruits = ["苹果", "香蕉"]
+print("初始列表:", fruits)
+
+# append() - 在末尾添加一个元素
+fruits.append("橙子")
+print("添加橙子:", fruits)
+
+# insert() - 在指定位置插入元素
+fruits.insert(1, "草莓")
+print("插入草莓:", fruits)
+
+# extend() - 添加多个元素
+fruits.extend(["葡萄", "西瓜"])
+print("扩展列表:", fruits)</code></pre>
+                        </div>
+
+                        <h3>删除元素</h3>
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 删除元素</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python">fruits = ["苹果", "香蕉", "橙子", "草莓", "葡萄"]
+print("原始列表:", fruits)
+
+# remove() - 删除指定值的第一个元素
+fruits.remove("香蕉")
+print("删除香蕉:", fruits)
+
+# pop() - 删除并返回指定位置的元素（默认最后一个）
+last_fruit = fruits.pop()
+print("弹出的水果:", last_fruit)
+print("弹出后列表:", fruits)
+
+# del - 删除指定位置的元素
+del fruits[0]
+print("删除第一个:", fruits)</code></pre>
+                        </div>
+
+                        <h3>其他常用方法</h3>
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 其他列表方法</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python">numbers = [3, 1, 4, 1, 5, 9, 2, 6, 5]
+print("原始列表:", numbers)
+
+# count() - 统计元素出现次数
+print("1出现的次数:", numbers.count(1))
+
+# index() - 查找元素的索引
+print("4的索引:", numbers.index(4))
+
+# sort() - 排序（修改原列表）
+numbers.sort()
+print("升序排列:", numbers)
+
+# reverse() - 反转列表
+numbers.reverse()
+print("反转列表:", numbers)
+
+# len() - 获取列表长度
+print("列表长度:", len(numbers))</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 知识点4：元组 -->
+                    <section class="mb-4">
+                        <h2>📦 元组（Tuple）</h2>
+                        <p>元组是有序的、不可变的数据类型。一旦创建，就不能修改其内容。</p>
+
+                        <h3>创建和使用元组</h3>
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 元组操作</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 创建元组
+point = (3, 4)
+print("坐标点:", point)
+
+# 创建单个元素的元组（注意逗号）
+single_tuple = (42,)
+print("单元素元组:", single_tuple)
+
+# 不使用括号也可以创建元组
+colors = "红", "绿", "蓝"
+print("颜色元组:", colors)
+
+# 访问元组元素
+print("x坐标:", point[0])
+print("y坐标:", point[1])
+
+# 元组解包
+x, y = point
+print(f"解包后: x={x}, y={y}")
+
+# 元组的长度和其他操作
+print("元组长度:", len(point))
+print("元组中的最大值:", max(point))</code></pre>
+                        </div>
+
+                        <div class="alert alert-info">
+                            <strong>为什么使用元组？</strong>
+                            <ul>
+                                <li><strong>不可变性</strong>：数据安全，不会被意外修改</li>
+                                <li><strong>性能</strong>：比列表更快，占用内存更少</li>
+                                <li><strong>字典键</strong>：可以作为字典的键（列表不行）</li>
+                                <li><strong>函数返回</strong>：适合返回多个值</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- 知识点5：列表推导式 -->
+                    <section class="mb-4">
+                        <h2>🚀 列表推导式</h2>
+                        <p>列表推导式是Python的一个强大特性，可以用简洁的语法创建列表。</p>
+
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 列表推导式</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 基本语法
+squares = [x**2 for x in range(1, 6)]
+print("平方数:", squares)
+
+# 带条件的列表推导式
+even_squares = [x**2 for x in range(1, 11) if x % 2 == 0]
+print("偶数的平方:", even_squares)
+
+# 处理字符串列表
+words = ["hello", "world", "python", "programming"]
+uppercase = [word.upper() for word in words]
+print("大写单词:", uppercase)
+
+# 条件表达式
+numbers = [1, -2, 3, -4, 5]
+abs_numbers = [x if x >= 0 else -x for x in numbers]
+print("绝对值:", abs_numbers)
+
+# 嵌套列表推导式
+matrix = [[i*j for j in range(1, 4)] for i in range(1, 4)]
+print("乘法表:")
+for row in matrix:
+    print(row)</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 实践练习 -->
+                    <section class="mb-4">
+                        <h2>💻 实践练习</h2>
+                        
+                        <h3>练习1：购物清单管理</h3>
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 购物清单管理</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 创建购物清单
+shopping_list = []
+
+# 添加商品
+shopping_list.extend(["牛奶", "面包", "鸡蛋", "苹果"])
+print("购物清单:", shopping_list)
+
+# 检查是否需要买牛奶
+if "牛奶" in shopping_list:
+    print("需要买牛奶")
+
+# 买完面包，从清单中删除
+shopping_list.remove("面包")
+print("买完面包后:", shopping_list)
+
+# 添加新商品
+shopping_list.insert(0, "香蕉")  # 插入到开头
+print("添加香蕉:", shopping_list)
+
+# 清单排序
+shopping_list.sort()
+print("排序后:", shopping_list)</code></pre>
+                        </div>
+
+                        <h3>练习2：成绩处理</h3>
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 成绩处理</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 学生成绩
+scores = [85, 92, 78, 96, 88, 76, 94, 82]
+print("原始成绩:", scores)
+
+# 计算统计信息
+print("最高分:", max(scores))
+print("最低分:", min(scores))
+print("平均分:", sum(scores) / len(scores))
+
+# 筛选优秀成绩（>=90分）
+excellent = [score for score in scores if score >= 90]
+print("优秀成绩:", excellent)
+
+# 给所有成绩加5分奖励分
+bonus_scores = [score + 5 for score in scores]
+print("加奖励分后:", bonus_scores)
+
+# 统计各分数段人数
+above_90 = len([s for s in scores if s >= 90])
+between_80_90 = len([s for s in scores if 80 <= s < 90])
+below_80 = len([s for s in scores if s < 80])
+
+print(f"90分以上: {above_90}人")
+print(f"80-90分: {between_80_90}人")
+print(f"80分以下: {below_80}人")</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 章节总结 -->
+                    <section class="mb-4">
+                        <div class="card bg-light">
+                            <div class="card-header">
+                                <h5>📋 本章总结</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>列表是可变的有序序列，支持增删改查操作</li>
+                                    <li>常用列表方法：append()、insert()、remove()、pop()、sort()等</li>
+                                    <li>元组是不可变的有序序列，创建后不能修改</li>
+                                    <li>列表推导式提供了创建列表的简洁语法</li>
+                                    <li>根据数据特点选择使用列表或元组</li>
+                                    <li>掌握索引、切片等序列通用操作</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 导航按钮 -->
+                    <div class="d-flex justify-content-between mb-4">
+                        <a href="chapter4.html" class="btn btn-outline-primary">← 上一章：控制结构</a>
+                        <a href="chapter6.html" class="btn btn-primary">下一章：字典与集合 →</a>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入必要的JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <script src="../assets/js/tutorial-interactive.js"></script>
+</body>
+</html>

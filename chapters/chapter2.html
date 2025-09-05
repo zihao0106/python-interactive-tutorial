@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第2章：变量与数据类型 - Python交互式教程</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">🐍 Python交互式教程</a>
+            <div class="navbar-nav ms-auto">
+                <span class="nav-link text-light">
+                    <span id="python-status">⏳ Python环境加载中...</span>
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-3">
+                <!-- 目录侧边栏 -->
+                <div class="sticky-top" style="top: 1rem;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6>📚 课程目录</h6>
+                        </div>
+                        <div class="card-body p-2">
+                            <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="chapter1.html">第1章：Python基础</a>
+                                <a class="nav-link active" href="chapter2.html">第2章：变量与数据类型</a>
+                                <a class="nav-link" href="chapter3.html">第3章：运算符与表达式</a>
+                                <a class="nav-link" href="chapter4.html">第4章：控制结构</a>
+                                <a class="nav-link" href="chapter5.html">第5章：列表与元组</a>
+                                <a class="nav-link" href="chapter6.html">第6章：字典与集合</a>
+                                <a class="nav-link" href="chapter7.html">第7章：函数</a>
+                                <a class="nav-link" href="chapter8.html">第8章：模块与包</a>
+                                <a class="nav-link" href="chapter9.html">第9章：字符串处理</a>
+                                <a class="nav-link" href="chapter10.html">第10章：正则表达式</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-9">
+                <main>
+                    <!-- 章节标题 -->
+                    <div class="chapter-header">
+                        <h1>📦 第2章：变量与数据类型</h1>
+                        <p class="lead">学习如何在Python中存储和使用不同类型的数据。</p>
+                    </div>
+
+                    <!-- 学习目标 -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5>🎯 学习目标</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li>理解什么是变量，如何创建和使用变量</li>
+                                <li>掌握Python的基本数据类型</li>
+                                <li>学会数据类型转换</li>
+                                <li>了解变量命名规则</li>
+                                <li>学会使用input()函数获取用户输入</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 知识点1：什么是变量 -->
+                    <section class="mb-4">
+                        <h3>📊 什么是变量？</h3>
+                        <p>变量就像一个盒子，用来存储数据。我们可以给这个盒子起一个名字，以后就能通过这个名字来使用里面的数据。</p>
+                        
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 变量示例</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 创建变量
+name = "小明"
+age = 18
+height = 175.5
+
+# 使用变量
+print("姓名:", name)
+print("年龄:", age)
+print("身高:", height, "厘米")</code></pre>
+                        </div>
+
+                        <div class="alert alert-info">
+                            <strong>💡 知识点：</strong>
+                            <ul class="mb-0">
+                                <li>用 <code>=</code> 号给变量赋值</li>
+                                <li>变量名在左边，值在右边</li>
+                                <li>Python会自动识别数据类型</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- 知识点2：基本数据类型 -->
+                    <section class="mb-4">
+                        <h3>🏷️ Python的基本数据类型</h3>
+                        <p>Python有几种基本的数据类型：</p>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5>数字类型</h5>
+                                <ul>
+                                    <li><strong>整数(int)</strong>：123, -456</li>
+                                    <li><strong>浮点数(float)</strong>：3.14, -2.5</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h5>其他类型</h5>
+                                <ul>
+                                    <li><strong>字符串(str)</strong>："hello", '世界'</li>
+                                    <li><strong>布尔值(bool)</strong>：True, False</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 数据类型示例</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 不同的数据类型
+整数 = 42
+浮点数 = 3.14159
+字符串 = "Hello, Python!"
+布尔值 = True
+
+# 查看数据类型
+print("整数:", 整数, "类型:", type(整数))
+print("浮点数:", 浮点数, "类型:", type(浮点数))
+print("字符串:", 字符串, "类型:", type(字符串))
+print("布尔值:", 布尔值, "类型:", type(布尔值))</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 知识点3：变量命名规则 -->
+                    <section class="mb-4">
+                        <h3>📝 变量命名规则</h3>
+                        <p>给变量起名字要遵循一些规则：</p>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="alert alert-success">
+                                    <h6>✅ 正确的命名</h6>
+                                    <ul class="mb-0">
+                                        <li>name, age, student_count</li>
+                                        <li>userName, firstName</li>
+                                        <li>num1, score_2</li>
+                                        <li>姓名, 年龄 (支持中文)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="alert alert-danger">
+                                    <h6>❌ 错误的命名</h6>
+                                    <ul class="mb-0">
+                                        <li>2name (不能以数字开头)</li>
+                                        <li>my-age (不能有连字符)</li>
+                                        <li>class (不能用关键字)</li>
+                                        <li>my name (不能有空格)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 命名示例</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 好的变量命名
+student_name = "张三"
+total_score = 95
+is_passed = True
+
+# 使用有意义的变量名
+temperature_celsius = 25
+user_email = "zhang@example.com"
+
+print(f"学生: {student_name}")
+print(f"总分: {total_score}")
+print(f"是否通过: {is_passed}")
+print(f"温度: {temperature_celsius}°C")</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 知识点4：类型转换 -->
+                    <section class="mb-4">
+                        <h3>🔄 数据类型转换</h3>
+                        <p>有时我们需要将一种数据类型转换为另一种：</p>
+                        
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 类型转换示例</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 类型转换示例
+# 字符串转数字
+age_str = "18"
+age_int = int(age_str)
+print("字符串:", age_str, "转换后:", age_int)
+
+# 数字转字符串
+score = 95
+score_str = str(score)
+print("数字:", score, "转换后:", score_str)
+
+# 字符串转浮点数
+height_str = "175.5"
+height_float = float(height_str)
+print("字符串:", height_str, "转换后:", height_float)
+
+# 数字转布尔值
+print("0转布尔值:", bool(0))
+print("1转布尔值:", bool(1))</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 知识点5：用户输入 -->
+                    <section class="mb-4">
+                        <h3>⌨️ 获取用户输入</h3>
+                        <p>使用input()函数可以让用户输入数据：</p>
+                        
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 用户输入示例</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 注意：在网页环境中，input会使用模拟输入
+name = input("请输入你的姓名: ")
+print("你好,", name)
+
+# 输入数字时需要转换类型
+age_str = input("请输入你的年龄: ")
+age = int(age_str)
+print("你", age, "岁了")
+
+# 更简洁的写法
+height = float(input("请输入你的身高(米): "))
+print(f"你的身高是 {height} 米")</code></pre>
+                        </div>
+
+                        <div class="alert alert-warning">
+                            <strong>⚠️ 注意：</strong>
+                            <ul class="mb-0">
+                                <li>input()函数返回的总是字符串</li>
+                                <li>如果需要数字，要用int()或float()转换</li>
+                                <li>在这个网页环境中，input会使用模拟输入</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- 实践练习 -->
+                    <section class="mb-4">
+                        <h3>💪 实践练习</h3>
+                        <div class="card">
+                            <div class="card-header">
+                                <h6>练习1：个人信息收集器</h6>
+                            </div>
+                            <div class="card-body">
+                                <p>创建一个程序，收集并显示个人信息：</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-header">
+                                        <span>💻 练习代码</span>
+                                        <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                                    </div>
+                                    <pre><code class="language-python"># 个人信息收集器
+print("=== 个人信息收集器 ===")
+
+# 收集信息
+name = input("姓名: ")
+age = int(input("年龄: "))
+height = float(input("身高(米): "))
+is_student = input("是学生吗? (是/否): ") == "是"
+
+# 计算一些有趣的信息
+height_cm = height * 100
+birth_year = 2024 - age
+
+# 显示信息
+print("\n=== 你的信息 ===")
+print(f"姓名: {name}")
+print(f"年龄: {age} 岁")
+print(f"身高: {height} 米 ({height_cm} 厘米)")
+print(f"大约出生年份: {birth_year}")
+print(f"学生身份: {is_student}")
+
+# 显示数据类型
+print(f"\n姓名的类型: {type(name)}")
+print(f"年龄的类型: {type(age)}")
+print(f"身高的类型: {type(height)}")
+print(f"学生身份的类型: {type(is_student)}")</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 章节总结 -->
+                    <section class="mb-4">
+                        <div class="card bg-light">
+                            <div class="card-header">
+                                <h5>📋 本章总结</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>变量是存储数据的容器，用 <code>=</code> 赋值</li>
+                                    <li>Python有四种基本数据类型：int、float、str、bool</li>
+                                    <li>变量命名要遵循规则：字母开头、不能有空格等</li>
+                                    <li>使用 <code>type()</code> 查看数据类型</li>
+                                    <li>可以用 <code>int()</code>、<code>float()</code>、<code>str()</code> 转换数据类型</li>
+                                    <li><code>input()</code> 函数用于获取用户输入（返回字符串）</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 导航按钮 -->
+                    <div class="d-flex justify-content-between mb-4">
+                        <a href="chapter1.html" class="btn btn-outline-primary">← 上一章：Python入门</a>
+                        <a href="chapter3.html" class="btn btn-primary">下一章：运算符与表达式 →</a>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入必要的JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <script src="../assets/js/tutorial-interactive.js"></script>
+</body>
+</html>

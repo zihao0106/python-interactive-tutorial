@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第1章：Python入门与基础语法 - Python交互式教程</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">🐍 Python交互式教程</a>
+            <div class="navbar-nav ms-auto">
+                <span class="nav-link text-light">
+                    <span id="python-status">⏳ Python环境加载中...</span>
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-3">
+                <!-- 目录侧边栏 -->
+                <div class="sticky-top" style="top: 1rem;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6>📚 课程目录</h6>
+                        </div>
+                        <div class="card-body p-2">
+                            <nav class="nav nav-pills flex-column">
+                                <a class="nav-link active" href="chapter1.html">第1章：Python基础</a>
+                                <a class="nav-link" href="chapter2.html">第2章：变量与数据类型</a>
+                                <a class="nav-link" href="chapter3.html">第3章：运算符与表达式</a>
+                                <a class="nav-link" href="chapter4.html">第4章：控制结构</a>
+                                <a class="nav-link" href="chapter5.html">第5章：列表与元组</a>
+                                <a class="nav-link" href="chapter6.html">第6章：字典与集合</a>
+                                <a class="nav-link" href="chapter7.html">第7章：函数</a>
+                                <a class="nav-link" href="chapter8.html">第8章：模块与包</a>
+                                <a class="nav-link" href="chapter9.html">第9章：字符串处理</a>
+                                <a class="nav-link" href="chapter10.html">第10章：正则表达式</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-9">
+                <main>
+                    <!-- 章节标题 -->
+                    <div class="chapter-header">
+                        <h1>🐍 第1章：Python基础</h1>
+                        <p class="lead">欢迎来到Python的世界！本章将带你了解Python的特点和编写你的第一个Python程序。</p>
+                    </div>
+
+                    <!-- 学习目标 -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5>🎯 学习目标</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li>了解Python语言的特点和优势</li>
+                                <li>学会编写第一个Python程序</li>
+                                <li>掌握print()函数的使用方法</li>
+                                <li>理解代码注释的重要性</li>
+                                <li>掌握Python的基本语法规则</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 知识点1：Python简介 -->
+                    <section class="mb-4">
+                        <h3>🐍 什么是Python？</h3>
+                        <p>Python是一种简单易学、功能强大的编程语言。它有以下特点：</p>
+                        <ul>
+                            <li><strong>简洁明了</strong>：代码易读易写</li>
+                            <li><strong>功能强大</strong>：可以做网站、数据分析、人工智能等</li>
+                            <li><strong>跨平台</strong>：Windows、Mac、Linux都能运行</li>
+                            <li><strong>开源免费</strong>：任何人都可以使用</li>
+                        </ul>
+                    </section>
+
+                    <!-- 知识点2：第一个Python程序 -->
+                    <section class="mb-4">
+                        <h3>👋 第一个Python程序</h3>
+                        <p>让我们从最经典的"Hello, World!"开始：</p>
+                        
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 代码示例</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 这是我的第一个Python程序
+print("Hello, World!")
+print("欢迎来到Python编程世界！")</code></pre>
+                        </div>
+
+                        <div class="alert alert-info">
+                            <strong>💡 知识点：</strong>
+                            <ul class="mb-0">
+                                <li><code>print()</code>函数用于在屏幕上显示文字</li>
+                                <li>文字需要用引号包围（单引号或双引号都可以）</li>
+                                <li>以<code>#</code>开头的行是注释，不会被执行</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- 知识点3：代码注释 -->
+                    <section class="mb-4">
+                        <h3>📝 代码注释</h3>
+                        <p>注释是给人看的说明文字，Python会忽略它们。注释非常重要，能帮助你和其他人理解代码。</p>
+                        
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 注释示例</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 单行注释：计算两个数的和
+result = 5 + 3  # 这也是注释
+
+"""
+多行注释：
+这里可以写很多行的说明
+通常用于函数或类的说明
+"""
+
+print("计算结果:", result)</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 知识点4：缩进规则 -->
+                    <section class="mb-4">
+                        <h3>📏 缩进规则</h3>
+                        <p>Python使用缩进来表示代码块，这是Python的一个重要特色：</p>
+                        
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 缩进示例</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 正确的缩进示例
+age = 18
+if age >= 18:
+    print("你已成年")  # 这行需要缩进
+    print("可以投票")  # 这行也需要缩进
+print("程序结束")      # 这行不需要缩进</code></pre>
+                        </div>
+
+                        <div class="alert alert-warning">
+                            <strong>⚠️ 注意：</strong>
+                            <ul class="mb-0">
+                                <li>Python中缩进通常使用4个空格</li>
+                                <li>同一代码块的缩进必须保持一致</li>
+                                <li>错误的缩进会导致程序报错</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- 章节总结 -->
+                    <section class="mb-4">
+                        <div class="card bg-light">
+                            <div class="card-header">
+                                <h5>📋 本章总结</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>Python是什么，有什么特点</li>
+                                    <li>如何编写第一个Python程序</li>
+                                    <li>print()函数的基本用法</li>
+                                    <li>如何添加注释让代码更清晰</li>
+                                    <li><code>print()</code> - 输出函数</li>
+                                    <li><code>#</code> - 单行注释</li>
+                                    <li><code>"""</code> - 多行注释</li>
+                                    <li>字符串需要用引号包围</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 导航按钮 -->
+                    <div class="d-flex justify-content-between mb-4">
+                        <a href="../index.html" class="btn btn-outline-primary">← 返回首页</a>
+                        <a href="chapter2.html" class="btn btn-primary">下一章：变量与数据类型 →</a>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入必要的JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <script src="../assets/js/tutorial-interactive.js"></script>
+</body>
+</html>
+                    </section>
+
+                    <!-- 导航按钮 -->
+                    <div class="d-flex justify-content-between mb-4">
+                        <a href="../index.html" class="btn btn-outline-primary">← 返回首页</a>
+                        <a href="chapter2.html" class="btn btn-primary">下一章：变量与数据类型 →</a>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入必要的JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <script src="../assets/js/tutorial-interactive.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+{
+  "city": "北京",
+  "country": "中国",
+  "forecast": [
+    {
+      "date": "2024-01-01",
+      "temperature": {
+        "high": 8,
+        "low": -2,
+        "unit": "celsius"
+      },
+      "weather": "晴天",
+      "humidity": 45,
+      "wind_speed": 12,
+      "air_quality": "良好"
+    },
+    {
+      "date": "2024-01-02", 
+      "temperature": {
+        "high": 5,
+        "low": -5,
+        "unit": "celsius"
+      },
+      "weather": "多云",
+      "humidity": 52,
+      "wind_speed": 8,
+      "air_quality": "优秀"
+    },
+    {
+      "date": "2024-01-03",
+      "temperature": {
+        "high": 2,
+        "low": -8,
+        "unit": "celsius"
+      },
+      "weather": "小雪",
+      "humidity": 68,
+      "wind_speed": 15,
+      "air_quality": "良好"
+    },
+    {
+      "date": "2024-01-04",
+      "temperature": {
+        "high": 6,
+        "low": -3,
+        "unit": "celsius"
+      },
+      "weather": "晴天",
+      "humidity": 38,
+      "wind_speed": 10,
+      "air_quality": "优秀"
+    },
+    {
+      "date": "2024-01-05",
+      "temperature": {
+        "high": 9,
+        "low": 1,
+        "unit": "celsius"
+      },
+      "weather": "阴天",
+      "humidity": 55,
+      "wind_speed": 6,
+      "air_quality": "良好"
+    },
+    {
+      "date": "2024-01-06",
+      "temperature": {
+        "high": 12,
+        "low": 3,
+        "unit": "celsius"
+      },
+      "weather": "多云",
+      "humidity": 48,
+      "wind_speed": 9,
+      "air_quality": "优秀"
+    },
+    {
+      "date": "2024-01-07",
+      "temperature": {
+        "high": 7,
+        "low": -1,
+        "unit": "celsius"
+      },
+      "weather": "小雨",
+      "humidity": 72,
+      "wind_speed": 14,
+      "air_quality": "良好"
+    }
+  ],
+  "updated": "2024-01-01T12:00:00Z",
+  "source": "示例天气数据"
+}

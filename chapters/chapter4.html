@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第4章：控制结构 - Python交互式教程</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">🐍 Python交互式教程</a>
+            <div class="navbar-nav ms-auto">
+                <span class="nav-link text-light">
+                    <span id="python-status">⏳ Python环境加载中...</span>
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-3">
+                <!-- 目录侧边栏 -->
+                <div class="sticky-top" style="top: 1rem;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6>📚 课程目录</h6>
+                        </div>
+                        <div class="card-body p-2">
+                            <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="chapter1.html">第1章：Python基础</a>
+                                <a class="nav-link" href="chapter2.html">第2章：变量与数据类型</a>
+                                <a class="nav-link" href="chapter3.html">第3章：运算符与表达式</a>
+                                <a class="nav-link active" href="chapter4.html">第4章：控制结构</a>
+                                <a class="nav-link" href="chapter5.html">第5章：列表与元组</a>
+                                <a class="nav-link" href="chapter6.html">第6章：字典与集合</a>
+                                <a class="nav-link" href="chapter7.html">第7章：函数</a>
+                                <a class="nav-link" href="chapter8.html">第8章：模块与包</a>
+                                <a class="nav-link" href="chapter9.html">第9章：字符串处理</a>
+                                <a class="nav-link" href="chapter10.html">第10章：正则表达式</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-9">
+                <main>
+                    <!-- 章节标题 -->
+                    <div class="chapter-header">
+                        <h1>🎮 第4章：控制结构</h1>
+                        <p class="lead">学习如何控制程序的执行流程，让程序能够做出决策和重复执行任务。</p>
+                    </div>
+
+                    <!-- 学习目标 -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5>🎯 学习目标</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li>掌握条件语句(if/elif/else)的使用</li>
+                                <li>学会for循环和while循环</li>
+                                <li>了解break和continue的作用</li>
+                                <li>掌握嵌套循环的概念</li>
+                                <li>学会使用range()函数</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 知识点1：条件语句 -->
+                    <section class="mb-4">
+                        <h3>🤔 条件语句 (if/elif/else)</h3>
+                        <p>条件语句让程序能够根据不同的情况执行不同的代码。</p>
+                        
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 基本if语句</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 基本if语句
+age = 18
+
+if age >= 18:
+    print("你已经成年了！")
+    print("可以投票了")
+
+print("程序继续执行...")
+
+# if-else语句
+weather = "rainy"
+
+if weather == "sunny":
+    print("今天天气不错，去公园吧！")
+else:
+    print("今天不太适合出门")
+
+# 多条件判断 if-elif-else
+score = 85
+
+if score >= 90:
+    grade = "A"
+    print("优秀！")
+elif score >= 80:
+    grade = "B" 
+    print("良好！")
+elif score >= 70:
+    grade = "C"
+    print("一般")
+else:
+    grade = "D"
+    print("需要努力")
+
+print(f"你的成绩等级是：{grade}")</code></pre>
+                        </div>
+
+                        <div class="alert alert-info">
+                            <strong>💡 注意事项：</strong>
+                            <ul class="mb-0">
+                                <li>条件后面要加冒号 <code>:</code></li>
+                                <li>条件成立时执行的代码要缩进</li>
+                                <li><code>elif</code> 是 "else if" 的简写</li>
+                                <li>可以有多个 <code>elif</code>，但只能有一个 <code>else</code></li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- 知识点2：while循环 -->
+                    <section class="mb-4">
+                        <h3>🔄 while循环</h3>
+                        <p>while循环会在条件为真时重复执行代码块。</p>
+                        
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 while循环示例</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 基本while循环
+count = 1
+while count <= 5:
+    print(f"第{count}次循环")
+    count += 1  # 重要：更新计数器，避免无限循环
+
+print("循环结束")
+
+# 实际应用：猜数字游戏（简化版）
+import random
+secret_number = random.randint(1, 10)
+guess = 0
+attempts = 0
+
+print("我想了一个1到10之间的数字，你来猜猜看！")
+
+while guess != secret_number and attempts < 3:
+    guess = int(input(f"第{attempts + 1}次猜测，请输入数字: "))
+    attempts += 1
+    
+    if guess < secret_number:
+        print("太小了！")
+    elif guess > secret_number:
+        print("太大了！")
+    else:
+        print("恭喜你猜对了！")
+
+if guess != secret_number:
+    print(f"游戏结束，答案是 {secret_number}")
+
+# while循环计算累加
+sum_result = 0
+i = 1
+while i <= 100:
+    sum_result += i
+    i += 1
+
+print(f"1到100的和是：{sum_result}")</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 知识点3：for循环 -->
+                    <section class="mb-4">
+                        <h3>🎯 for循环</h3>
+                        <p>for循环用于遍历序列（如列表、字符串、range等）。</p>
+                        
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 for循环示例</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 遍历字符串
+name = "Python"
+for letter in name:
+    print(f"字母: {letter}")
+
+print()
+
+# 遍历列表
+fruits = ["苹果", "香蕉", "橙子", "葡萄"]
+for fruit in fruits:
+    print(f"我喜欢吃{fruit}")
+
+print()
+
+# 使用range()函数
+print("使用range(5):")
+for i in range(5):  # 0, 1, 2, 3, 4
+    print(f"数字: {i}")
+
+print("\n使用range(1, 6):")
+for i in range(1, 6):  # 1, 2, 3, 4, 5
+    print(f"数字: {i}")
+
+print("\n使用range(2, 11, 2):")
+for i in range(2, 11, 2):  # 2, 4, 6, 8, 10
+    print(f"偶数: {i}")
+
+# 实际应用：九九乘法表
+print("\n九九乘法表:")
+for i in range(1, 10):
+    for j in range(1, i + 1):
+        print(f"{j}×{i}={i*j}", end="  ")
+    print()  # 换行</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 知识点4：break和continue -->
+                    <section class="mb-4">
+                        <h3>⏭️ break和continue</h3>
+                        <p>break用于跳出循环，continue用于跳过当前循环的剩余部分。</p>
+                        
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 break和continue示例</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># break示例：找到第一个偶数就停止
+numbers = [1, 3, 5, 8, 9, 10, 12]
+print("找到第一个偶数：")
+for num in numbers:
+    if num % 2 == 0:
+        print(f"找到偶数：{num}")
+        break  # 跳出循环
+    print(f"检查数字：{num}")
+
+print()
+
+# continue示例：跳过偶数，只打印奇数
+print("只打印奇数：")
+for num in range(1, 11):
+    if num % 2 == 0:
+        continue  # 跳过偶数，继续下一次循环
+    print(f"奇数：{num}")
+
+print()
+
+# while循环中的break
+print("while循环中的break：")
+count = 0
+while True:  # 无限循环
+    count += 1
+    if count > 5:
+        break  # 当count大于5时跳出循环
+    print(f"计数：{count}")
+
+print("循环结束")
+
+# 实际应用：输入验证
+print("\n输入验证示例：")
+while True:
+    user_input = input("请输入一个正数（输入'quit'退出）: ")
+    if user_input.lower() == 'quit':
+        break
+    
+    try:
+        number = float(user_input)
+        if number > 0:
+            print(f"你输入的正数是：{number}")
+            break
+        else:
+            print("请输入正数！")
+            continue
+    except ValueError:
+        print("请输入有效数字！")</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 知识点5：嵌套循环 -->
+                    <section class="mb-4">
+                        <h3>🎭 嵌套循环</h3>
+                        <p>循环里面还可以包含循环，这叫做嵌套循环。</p>
+                        
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 嵌套循环示例</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 打印矩形图案
+print("打印3x4的星形矩形：")
+for row in range(3):
+    for col in range(4):
+        print("*", end=" ")
+    print()  # 每行结束后换行
+
+print()
+
+# 打印三角形图案
+print("打印三角形：")
+for i in range(1, 6):
+    for j in range(i):
+        print("*", end=" ")
+    print()
+
+print()
+
+# 打印数字三角形
+print("打印数字三角形：")
+for i in range(1, 6):
+    for j in range(1, i + 1):
+        print(j, end=" ")
+    print()
+
+print()
+
+# 遍历二维列表
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+print("遍历矩阵：")
+for row in range(len(matrix)):
+    for col in range(len(matrix[row])):
+        print(f"matrix[{row}][{col}] = {matrix[row][col]}")
+
+# 更简洁的方式
+print("\n简洁方式遍历矩阵：")
+for i, row in enumerate(matrix):
+    for j, value in enumerate(row):
+        print(f"位置({i},{j}): {value}")</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 实践练习 -->
+                    <section class="mb-4">
+                        <h3>💪 实践练习</h3>
+                        <div class="card">
+                            <div class="card-header">
+                                <h6>练习1：成绩统计程序</h6>
+                            </div>
+                            <div class="card-body">
+                                <p>创建一个程序来统计学生成绩：</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-header">
+                                        <span>💻 练习代码</span>
+                                        <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                                    </div>
+                                    <pre><code class="language-python"># 成绩统计程序
+print("=== 成绩统计程序 ===")
+
+scores = []
+total = 0
+count = 0
+
+# 输入成绩
+print("请输入学生成绩（输入-1结束）：")
+while True:
+    score_input = input(f"第{count + 1}个学生的成绩: ")
+    
+    try:
+        score = float(score_input)
+        if score == -1:
+            break
+        elif score < 0 or score > 100:
+            print("成绩应该在0-100之间，请重新输入")
+            continue
+        else:
+            scores.append(score)
+            total += score
+            count += 1
+    except ValueError:
+        print("请输入有效数字")
+
+# 统计分析
+if count > 0:
+    average = total / count
+    print(f"\n=== 成绩统计结果 ===")
+    print(f"总人数: {count}")
+    print(f"总分: {total}")
+    print(f"平均分: {average:.2f}")
+    print(f"最高分: {max(scores)}")
+    print(f"最低分: {min(scores)}")
+    
+    # 等级分布
+    grade_count = {"A": 0, "B": 0, "C": 0, "D": 0}
+    
+    print(f"\n=== 详细成绩单 ===")
+    for i, score in enumerate(scores, 1):
+        if score >= 90:
+            grade = "A"
+        elif score >= 80:
+            grade = "B"
+        elif score >= 70:
+            grade = "C"
+        else:
+            grade = "D"
+        
+        grade_count[grade] += 1
+        print(f"学生{i}: {score}分 (等级{grade})")
+    
+    print(f"\n=== 等级分布 ===")
+    for grade, count in grade_count.items():
+        percentage = (count / len(scores)) * 100
+        print(f"等级{grade}: {count}人 ({percentage:.1f}%)")
+        
+else:
+    print("没有输入任何成绩")</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 章节总结 -->
+                    <section class="mb-4">
+                        <div class="card bg-light">
+                            <div class="card-header">
+                                <h5>📋 本章总结</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li><strong>条件语句</strong>：if/elif/else 让程序能够做出决策</li>
+                                    <li><strong>while循环</strong>：在条件为真时重复执行代码</li>
+                                    <li><strong>for循环</strong>：用于遍历序列，配合range()使用</li>
+                                    <li><strong>break</strong>：跳出整个循环</li>
+                                    <li><strong>continue</strong>：跳过当前循环，继续下一次</li>
+                                    <li><strong>嵌套循环</strong>：循环内部包含循环，用于处理二维数据</li>
+                                    <li>注意避免无限循环，记得更新循环变量</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 导航按钮 -->
+                    <div class="d-flex justify-content-between mb-4">
+                        <a href="chapter3.html" class="btn btn-outline-primary">← 上一章：运算符与表达式</a>
+                        <a href="chapter5.html" class="btn btn-primary">下一章：列表与元组 →</a>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入必要的JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <script src="../assets/js/tutorial-interactive.js"></script>
+</body>
+</html>

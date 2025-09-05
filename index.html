@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python交互式教程</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css?v=20250904">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                🐍 Python交互式教程
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="chapters/chapter1.html">
+                    📚 教程
+                </a>
+                <a class="nav-link" href="python-editor.html">
+                    ⚡ 快速编程
+                </a>
+                <a class="nav-link" href="./lite/lab/index.html" target="_blank">
+                    🚀 JupyterLite
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-section">
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold">🐍 Python 交互式编程教程</h1>
+                    <p class="lead">边学边练，在浏览器中直接运行代码，掌握Python编程精髓</p>
+                    
+                    <div class="features mb-4">
+                        <div class="feature-item">
+                            <span class="badge bg-primary me-2">✨</span>
+                            <strong>交互式学习</strong> - 直接在浏览器中运行代码
+                        </div>
+                        <div class="feature-item">
+                            <span class="badge bg-success me-2">🚀</span>
+                            <strong>无需安装</strong> - 基于WebAssembly技术
+                        </div>
+                        <div class="feature-item">
+                            <span class="badge bg-info me-2">📱</span>
+                            <strong>随时随地</strong> - 支持所有现代浏览器
+                        </div>
+                    </div>
+                    
+                    <!-- 环境选择说明 -->
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="card bg-success bg-opacity-10 border-success">
+                                <div class="card-body text-center p-3">
+                                    <h6 class="text-success mb-2">⚡ 快速编程环境</h6>
+                                    <small class="text-light">秒级启动 • 基础功能 • 适合学习</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card bg-info bg-opacity-10 border-info">
+                                <div class="card-body text-center p-3">
+                                    <h6 class="text-info mb-2">🚀 完整环境</h6>
+                                    <small class="text-light">需要等待 • 完整功能 • 适合项目</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <a href="chapters/chapter1.html" class="btn btn-primary btn-lg">
+                            📚 开始学习教程
+                        </a>
+                        <div class="row g-2 mt-2">
+                            <div class="col-md-6">
+                                <a href="python-editor.html" class="btn btn-success btn-lg w-100">
+                                    ⚡ 快速编程环境
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-grid gap-1">
+                                    <a href="./lite/lab/index.html" target="_blank" class="btn btn-outline-light btn-lg">
+                                        🚀 完整JupyterLite
+                                    </a>
+                                    <small class="text-light">点击直接访问</small>
+                                </div>
+                            </div>
+                        </div>
+                        <small class="text-light mt-2 d-block text-center">
+                            💡 建议初学者选择"快速编程环境"
+                        </small>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="demo-code-block" style="color: #333 !important;">
+                        <div class="code-header">
+                            <span class="code-title">💡 体验交互式编程</span>
+                            <div>
+                                <button class="btn btn-sm btn-success run-demo-btn" id="runDemoBtn">
+                                    ▶️ 运行代码
+                                </button>
+                                <button class="btn btn-sm btn-outline-light copy-demo-btn ms-1" title="复制代码">
+                                    📋 复制
+                                </button>
+                            </div>
+                        </div>
+                        <pre style="background: #f8f8f8 !important; color: #333 !important; padding: 1rem; margin: 0;"><code class="language-python" style="color: #333 !important; font-family: 'Consolas', 'Monaco', 'Courier New', monospace;" id="demoCode"># 🐍 Python 交互式演示
+import datetime
+
+print("=" * 40)
+print("🎉 欢迎来到Python交互式世界！")
+print("=" * 40)
+
+# 基本变量和字符串
+name = "Python学习者"
+current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+print(f"👋 你好，{name}！")
+print(f"📅 当前时间：{current_time}")
+
+# 列表和循环操作
+skills = ["变量操作", "条件判断", "循环控制", "函数定义"]
+print(f"\n📚 你将掌握的Python技能：")
+for i, skill in enumerate(skills, 1):
+    print(f"  {i}. {skill}")
+
+# 数学计算演示
+print(f"\n🔢 数学计算演示：")
+numbers = [1, 2, 3, 4, 5]
+squares = [n**2 for n in numbers]
+print(f"原数列: {numbers}")
+print(f"平方数: {squares}")
+print(f"总和: {sum(squares)}")
+
+print(f"\n✨ 这就是Python的魅力 - 简洁而强大！")</code></pre>
+                        
+                        <!-- 输出区域 -->
+                        <div class="output-area" id="outputArea" style="display: none;">
+                            <div class="output-header">
+                                <span class="output-title">📊 运行结果</span>
+                                <button class="btn btn-sm btn-outline-secondary clear-output-btn" onclick="clearOutput()">
+                                    🗑️ 清除
+                                </button>
+                            </div>
+                            <pre class="output-content" id="outputContent"></pre>
+                        </div>
+                        
+                        <!-- 加载状态 -->
+                        <div class="loading-area" id="loadingArea" style="display: none;">
+                            <div class="text-center p-3">
+                                <div class="spinner-border spinner-border-sm text-primary me-2" role="status"></div>
+                                <span>正在运行代码...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    
+    <script>
+        let pyodideReady = false;
+        let pyodide = null;
+
+        // 初始化Pyodide
+        async function initPyodide() {
+            if (pyodideReady) return;
+            
+            try {
+                console.log('开始加载Pyodide...');
+                pyodide = await loadPyodide();
+                pyodideReady = true;
+                console.log('Pyodide加载完成');
+            } catch (error) {
+                console.error('Pyodide加载失败:', error);
+                throw error;
+            }
+        }
+
+        // 运行Python代码
+        async function runPythonCode() {
+            const outputArea = document.getElementById('outputArea');
+            const outputContent = document.getElementById('outputContent');
+            const loadingArea = document.getElementById('loadingArea');
+            const runBtn = document.getElementById('runDemoBtn');
+            const codeElement = document.getElementById('demoCode');
+            
+            try {
+                // 显示加载状态
+                loadingArea.style.display = 'block';
+                outputArea.style.display = 'none';
+                runBtn.disabled = true;
+                
+                // 初始化Pyodide
+                if (!pyodideReady) {
+                    await initPyodide();
+                }
+                
+                // 获取代码
+                const code = codeElement.textContent;
+                
+                // 捕获输出
+                pyodide.runPython(`
+import sys
+from io import StringIO
+sys.stdout = StringIO()
+                `);
+                
+                // 执行代码
+                pyodide.runPython(code);
+                
+                // 获取输出
+                const output = pyodide.runPython("sys.stdout.getvalue()");
+                
+                // 显示结果
+                outputContent.textContent = output || '代码执行完成（无输出）';
+                outputArea.style.display = 'block';
+                
+            } catch (error) {
+                console.error('代码执行错误:', error);
+                outputContent.textContent = `错误: ${error.message}`;
+                outputArea.style.display = 'block';
+            } finally {
+                loadingArea.style.display = 'none';
+                runBtn.disabled = false;
+            }
+        }
+
+        // 清除输出
+        function clearOutput() {
+            const outputArea = document.getElementById('outputArea');
+            outputArea.style.display = 'none';
+        }
+
+        // 复制代码
+        document.querySelector('.copy-demo-btn').addEventListener('click', function() {
+            const code = document.getElementById('demoCode').textContent;
+            navigator.clipboard.writeText(code).then(function() {
+                const btn = this;
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '✅ 已复制';
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                }, 2000);
+            }.bind(this));
+        });
+
+        // 运行按钮事件
+        document.getElementById('runDemoBtn').addEventListener('click', runPythonCode);
+
+        // 打开JupyterLite
+        function openJupyterLite() {
+            console.log('openJupyterLite函数被调用');
+            
+            try {
+                // 在新窗口中打开JupyterLite
+                const newWindow = window.open('./lite/lab/index.html', '_blank');
+                console.log('window.open结果:', newWindow);
+                
+                if (newWindow) {
+                    // 创建一个加载提示
+                    const notification = document.createElement('div');
+                    notification.style.cssText = `
+                        position: fixed;
+                        top: 20px;
+                        right: 20px;
+                        background: #17a2b8;
+                        color: white;
+                        padding: 15px 20px;
+                        border-radius: 8px;
+                        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                        z-index: 9999;
+                        max-width: 300px;
+                        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+                    `;
+                    notification.innerHTML = `
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div style="width: 20px; height: 20px; border: 2px solid rgba(255,255,255,0.3); border-top: 2px solid white; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                            <div>
+                                <strong>JupyterLite 启动中...</strong><br>
+                                <small>首次加载需要等待1-2分钟</small>
+                            </div>
+                        </div>
+                        <style>
+                            @keyframes spin {
+                                0% { transform: rotate(0deg); }
+                                100% { transform: rotate(360deg); }
+                            }
+                        </style>
+                    `;
+                    
+                    document.body.appendChild(notification);
+                    console.log('显示加载通知');
+                    
+                    // 5秒后自动移除提示
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            notification.parentNode.removeChild(notification);
+                        }
+                    }, 5000);
+                } else {
+                    console.log('弹出窗口被阻止');
+                    alert('请允许弹出窗口或直接访问: ./lite/lab/index.html');
+                }
+            } catch (error) {
+                console.error('openJupyterLite错误:', error);
+                alert('打开JupyterLite时发生错误: ' + error.message);
+            }
+        }
+
+        // 页面加载完成后的初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('页面加载完成，可以开始使用交互式功能');
+            
+            // 测试函数是否可用
+            window.testClick = function() {
+                alert('按钮点击测试成功！');
+            };
+            
+            console.log('openJupyterLite函数:', typeof openJupyterLite);
+            console.log('testClick函数:', typeof window.testClick);
+        });
+    </script>
+</body>
+</html>

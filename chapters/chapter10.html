@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第10章：正则表达式 - Python交互式教程</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">🐍 Python交互式教程</a>
+            <div class="navbar-nav ms-auto">
+                <span class="nav-link text-light">
+                    <span id="python-status">⏳ Python环境加载中...</span>
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-3">
+                <!-- 目录侧边栏 -->
+                <div class="sticky-top" style="top: 1rem;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6>📚 课程目录</h6>
+                        </div>
+                        <div class="card-body p-2">
+                            <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="chapter1.html">第1章：Python基础</a>
+                                <a class="nav-link" href="chapter2.html">第2章：变量与数据类型</a>
+                                <a class="nav-link" href="chapter3.html">第3章：运算符与表达式</a>
+                                <a class="nav-link" href="chapter4.html">第4章：控制结构</a>
+                                <a class="nav-link" href="chapter5.html">第5章：列表与元组</a>
+                                <a class="nav-link" href="chapter6.html">第6章：字典与集合</a>
+                                <a class="nav-link" href="chapter7.html">第7章：函数</a>
+                                <a class="nav-link" href="chapter8.html">第8章：模块与包</a>
+                                <a class="nav-link" href="chapter9.html">第9章：字符串处理</a>
+                                <a class="nav-link active" href="chapter10.html">第10章：正则表达式</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-9">
+                <main>
+                    <!-- 章节标题 -->
+                    <div class="chapter-header">
+                        <h1>🔍 第10章：正则表达式</h1>
+                        <p class="lead">学习强大的文本模式匹配工具，让文本处理变得更加高效和灵活。</p>
+                    </div>
+
+                    <!-- 学习目标 -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5>🎯 学习目标</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li>理解正则表达式的概念和用途</li>
+                                <li>掌握正则表达式的基本语法</li>
+                                <li>学会使用Python的re模块</li>
+                                <li>熟练使用量词、字符类和分组</li>
+                                <li>能够编写实用的文本处理程序</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 知识点1：正则表达式基础 -->
+                    <section class="mb-4">
+                        <h3>📖 什么是正则表达式？</h3>
+                        <p>正则表达式（Regular Expression，简称regex或regexp）是一种强大的文本模式匹配工具，用于描述、匹配一系列符合某个句法规则的字符串。</p>
+                        
+                        <div class="alert alert-info">
+                            <h6>正则表达式的主要用途：</h6>
+                            <ul class="mb-0">
+                                <li><strong>验证</strong>：检查字符串是否符合特定格式（如邮箱、手机号）</li>
+                                <li><strong>查找</strong>：在文本中查找符合模式的内容</li>
+                                <li><strong>替换</strong>：将符合模式的内容替换为其他内容</li>
+                                <li><strong>提取</strong>：从文本中提取特定信息</li>
+                            </ul>
+                        </div>
+
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 正则表达式基础示例</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python">import re
+
+# 基本匹配
+text = "我的电话是13812345678"
+pattern = r"138\d{8}"  # 匹配以138开头的11位手机号
+
+# 使用search()查找
+match = re.search(pattern, text)
+if match:
+    print("找到手机号:", match.group())
+else:
+    print("未找到匹配")
+
+# 使用findall()查找所有匹配
+text2 = "联系方式：13812345678 或 15987654321"
+pattern2 = r"1[3-9]\d{9}"  # 匹配手机号的更通用模式
+matches = re.findall(pattern2, text2)
+print("所有手机号:", matches)
+
+# 基本模式示例
+examples = [
+    ("hello", "hello world"),          # 简单匹配
+    (r"\d+", "年龄25岁"),              # 匹配数字
+    (r"[a-z]+", "Hello World"),        # 匹配小写字母
+    (r"Python|Java", "我学Python"),     # 或操作
+]
+
+print("\n基本模式匹配:")
+for pattern, text in examples:
+    match = re.search(pattern, text)
+    result = match.group() if match else "无匹配"
+    print(f"模式: {pattern:12} 文本: {text:15} 结果: {result}")</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 知识点2：基本语法和元字符 -->
+                    <section class="mb-4">
+                        <h3>🔤 基本语法和元字符</h3>
+                        <p>正则表达式使用特殊字符来表示不同的匹配模式。</p>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>元字符</th>
+                                        <th>含义</th>
+                                        <th>示例</th>
+                                        <th>匹配</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>.</td><td>匹配任意单个字符</td><td>a.c</td><td>abc, a1c, a@c</td></tr>
+                                    <tr><td>^</td><td>匹配字符串开头</td><td>^hello</td><td>hello world</td></tr>
+                                    <tr><td>$</td><td>匹配字符串结尾</td><td>world$</td><td>hello world</td></tr>
+                                    <tr><td>*</td><td>前面字符重复0次或多次</td><td>ab*</td><td>a, ab, abb</td></tr>
+                                    <tr><td>+</td><td>前面字符重复1次或多次</td><td>ab+</td><td>ab, abb</td></tr>
+                                    <tr><td>?</td><td>前面字符重复0次或1次</td><td>ab?</td><td>a, ab</td></tr>
+                                    <tr><td>\d</td><td>匹配数字</td><td>\d+</td><td>123, 456</td></tr>
+                                    <tr><td>\w</td><td>匹配字母、数字、下划线</td><td>\w+</td><td>hello, test_1</td></tr>
+                                    <tr><td>\s</td><td>匹配空白字符</td><td>\s+</td><td>空格、制表符</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 元字符示例</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python">import re
+
+# 测试各种元字符
+test_cases = [
+    # (模式, 测试文本, 说明)
+    (r".", "abc", "点号匹配任意字符"),
+    (r"a.c", "abc a1c a@c", "点号在中间"),
+    (r"^hello", "hello world", "开头匹配"),
+    (r"world$", "hello world", "结尾匹配"),
+    (r"\d+", "年龄25岁，身高180cm", "匹配数字"),
+    (r"\w+", "hello_world 123", "匹配单词字符"),
+    (r"\s+", "hello    world", "匹配空白"),
+    (r"ab*", "a ab abb abbb", "* 量词"),
+    (r"ab+", "a ab abb abbb", "+ 量词"),
+    (r"ab?", "a ab abb", "? 量词"),
+]
+
+print("元字符测试:")
+for pattern, text, description in test_cases:
+    matches = re.findall(pattern, text)
+    print(f"{description:15} 模式: {pattern:8} → {matches}")
+
+print("\n字符类示例:")
+# 字符类 []
+character_classes = [
+    (r"[abc]", "abcdef", "匹配a、b或c"),
+    (r"[a-z]", "Hello World", "匹配小写字母"),
+    (r"[A-Z]", "Hello World", "匹配大写字母"),
+    (r"[0-9]", "abc123def", "匹配数字"),
+    (r"[^0-9]", "abc123def", "匹配非数字"),
+    (r"[a-zA-Z0-9]", "Hello@123", "匹配字母数字"),
+]
+
+for pattern, text, description in character_classes:
+    matches = re.findall(pattern, text)
+    print(f"{description:15} 模式: {pattern:12} → {matches}")</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 知识点3：量词和分组 -->
+                    <section class="mb-4">
+                        <h3>🔢 量词和分组</h3>
+                        <p>量词用于指定匹配的次数，分组用于将多个字符作为一个整体。</p>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>量词</th>
+                                        <th>含义</th>
+                                        <th>示例</th>
+                                        <th>匹配</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>{n}</td><td>重复n次</td><td>a{3}</td><td>aaa</td></tr>
+                                    <tr><td>{n,}</td><td>重复n次或更多</td><td>a{2,}</td><td>aa, aaa, aaaa</td></tr>
+                                    <tr><td>{n,m}</td><td>重复n到m次</td><td>a{2,4}</td><td>aa, aaa, aaaa</td></tr>
+                                    <tr><td>()</td><td>分组</td><td>(ab)+</td><td>ab, abab</td></tr>
+                                    <tr><td>|</td><td>或操作</td><td>cat|dog</td><td>cat或dog</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 量词和分组示例</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python">import re
+
+print("=== 量词示例 ===")
+text = "a aa aaa aaaa aaaaa"
+
+# 不同量词的效果
+quantifiers = [
+    (r"a", "单个a"),
+    (r"a{3}", "恰好3个a"),
+    (r"a{2,}", "2个或更多a"),
+    (r"a{2,4}", "2到4个a"),
+    (r"a+", "1个或更多a"),
+    (r"a*", "0个或更多a"),
+    (r"a?", "0个或1个a"),
+]
+
+for pattern, description in quantifiers:
+    matches = re.findall(pattern, text)
+    print(f"{description:12} {pattern:8} → {matches}")
+
+print("\n=== 分组示例 ===")
+# 分组的使用
+group_examples = [
+    (r"(ab)+", "ab abab ababab", "ab重复"),
+    (r"(hello|hi) world", "hello world hi world", "选择匹配"),
+    (r"(\d{4})-(\d{2})-(\d{2})", "2024-03-15", "日期分组"),
+    (r"([a-zA-Z]+)@([a-zA-Z]+)\.([a-zA-Z]+)", "user@example.com", "邮箱分组"),
+]
+
+for pattern, text, description in group_examples:
+    matches = re.findall(pattern, text)
+    print(f"{description:10} → {matches}")
+
+print("\n=== 捕获组详细示例 ===")
+# 详细的分组捕获
+date_text = "今天是2024-03-15，明天是2024-03-16"
+date_pattern = r"(\d{4})-(\d{2})-(\d{2})"
+
+# findall返回元组列表
+dates = re.findall(date_pattern, date_text)
+print("所有日期:", dates)
+
+# search返回匹配对象，可以访问各个分组
+match = re.search(date_pattern, date_text)
+if match:
+    print("完整匹配:", match.group(0))  # 或 match.group()
+    print("年份:", match.group(1))
+    print("月份:", match.group(2))
+    print("日期:", match.group(3))
+
+# 命名分组
+named_pattern = r"(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})"
+named_match = re.search(named_pattern, date_text)
+if named_match:
+    print("命名分组:")
+    print("年份:", named_match.group('year'))
+    print("月份:", named_match.group('month'))
+    print("日期:", named_match.group('day'))</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 知识点4：re模块的主要函数 -->
+                    <section class="mb-4">
+                        <h3>🛠️ re模块的主要函数</h3>
+                        <p>Python的re模块提供了多个函数来使用正则表达式。</p>
+                        
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 re模块函数示例</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python">import re
+
+text = "Python是一门编程语言。我喜欢Python。Python很强大。"
+
+print("=== re.search() - 查找第一个匹配 ===")
+match = re.search(r"Python", text)
+if match:
+    print("找到:", match.group())
+    print("位置:", match.start(), "-", match.end())
+
+print("\n=== re.findall() - 查找所有匹配 ===")
+matches = re.findall(r"Python", text)
+print("所有匹配:", matches)
+print("匹配次数:", len(matches))
+
+print("\n=== re.finditer() - 返回迭代器 ===")
+for match in re.finditer(r"Python", text):
+    print(f"匹配: {match.group()}, 位置: {match.start()}-{match.end()}")
+
+print("\n=== re.match() - 从开头匹配 ===")
+text2 = "Python是我最喜欢的语言"
+match1 = re.match(r"Python", text2)  # 成功
+match2 = re.match(r"Java", text2)    # 失败
+print("从开头匹配Python:", match1.group() if match1 else "无匹配")
+print("从开头匹配Java:", match2.group() if match2 else "无匹配")
+
+print("\n=== re.sub() - 替换 ===")
+# 简单替换
+new_text = re.sub(r"Python", "Java", text)
+print("替换后:", new_text)
+
+# 只替换第一个
+new_text2 = re.sub(r"Python", "Java", text, count=1)
+print("只替换第一个:", new_text2)
+
+# 使用函数替换
+def upper_replace(match):
+    return match.group().upper()
+
+new_text3 = re.sub(r"Python", upper_replace, text)
+print("转大写:", new_text3)
+
+print("\n=== re.split() - 分割 ===")
+data = "apple,banana;orange:grape"
+# 按多种分隔符分割
+parts = re.split(r"[,;:]", data)
+print("分割结果:", parts)
+
+# 分割时保留分隔符
+parts2 = re.split(r"([,;:])", data)
+print("保留分隔符:", parts2)
+
+print("\n=== 编译正则表达式 ===")
+# 预编译可以提高性能
+pattern = re.compile(r"\d+")
+numbers = "年龄25，身高180，体重70"
+matches = pattern.findall(numbers)
+print("提取的数字:", matches)</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 知识点5：实用的正则表达式模式 -->
+                    <section class="mb-4">
+                        <h3>📋 常用的正则表达式模式</h3>
+                        <p>一些在实际项目中经常用到的正则表达式模式。</p>
+                        
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 实用模式示例</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python">import re
+
+# 常用的正则表达式模式
+patterns = {
+    'email': r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+    'phone': r'^1[3-9]\d{9}$',
+    'id_card': r'^\d{17}[\dXx]$',
+    'url': r'https?://[^\s]+',
+    'ip_address': r'^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$',
+    'date': r'^\d{4}-\d{2}-\d{2}$',
+    'time': r'^([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$',
+    'chinese': r'[\u4e00-\u9fff]+',
+    'password': r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{8,}$'
+}
+
+def validate_input(pattern_name, test_string):
+    """验证输入是否符合模式"""
+    pattern = patterns.get(pattern_name)
+    if not pattern:
+        return False, "未知模式"
+    
+    match = re.match(pattern, test_string)
+    return bool(match), "有效" if match else "无效"
+
+# 测试数据
+test_data = {
+    'email': ['user@example.com', 'invalid-email', 'test@gmail.com'],
+    'phone': ['13812345678', '1234567890', '15987654321'],
+    'url': ['https://www.example.com', 'http://test.org', 'not-a-url'],
+    'date': ['2024-03-15', '2024/03/15', '2024-12-31'],
+    'chinese': ['你好世界', 'Hello World', '测试123'],
+}
+
+print("=== 输入验证测试 ===")
+for pattern_name, test_list in test_data.items():
+    print(f"\n{pattern_name.upper()} 验证:")
+    for test_str in test_list:
+        is_valid, msg = validate_input(pattern_name, test_str)
+        print(f"  '{test_str}' → {msg}")
+
+print("\n=== 文本提取示例 ===")
+# 从复杂文本中提取信息
+sample_text = """
+联系方式：
+邮箱：zhang@example.com, li@test.org
+电话：13812345678, 15987654321
+网站：https://www.example.com
+日期：2024-03-15
+IP地址：192.168.1.1
+"""
+
+print("提取的邮箱:")
+emails = re.findall(patterns['email'], sample_text)
+for email in emails:
+    print(f"  {email}")
+
+print("\n提取的电话:")
+phones = re.findall(patterns['phone'], sample_text)
+for phone in phones:
+    print(f"  {phone}")
+
+print("\n提取的网址:")
+urls = re.findall(patterns['url'], sample_text)
+for url in urls:
+    print(f"  {url}")
+
+print("\n提取的中文:")
+chinese_text = re.findall(patterns['chinese'], sample_text)
+for text in chinese_text:
+    print(f"  {text}")
+
+print("\n=== 密码强度检查 ===")
+passwords = ['123456', 'Password123', 'weak', 'StrongPass1', 'Abc123']
+for pwd in passwords:
+    is_valid, msg = validate_input('password', pwd)
+    strength = "强" if is_valid else "弱"
+    print(f"密码: {pwd:12} → 强度: {strength}")
+
+print("\n=== 高级文本处理 ===")
+# 提取并格式化电话号码
+phone_text = "联系电话：138-1234-5678 或 13812345678 或 138 1234 5678"
+# 匹配各种格式的电话号码
+phone_pattern = r'1[3-9]\d[\s-]?\d{4}[\s-]?\d{4}'
+raw_phones = re.findall(phone_pattern, phone_text)
+print("原始电话号码:", raw_phones)
+
+# 标准化电话号码格式
+def normalize_phone(match):
+    # 移除所有非数字字符
+    digits = re.sub(r'\D', '', match.group())
+    # 格式化为 xxx-xxxx-xxxx
+    return f"{digits[:3]}-{digits[3:7]}-{digits[7:]}"
+
+normalized = re.sub(phone_pattern, normalize_phone, phone_text)
+print("标准化后:", normalized)</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 实践练习 -->
+                    <section class="mb-4">
+                        <h3>💪 实践练习</h3>
+                        <div class="card">
+                            <div class="card-header">
+                                <h6>练习1：日志分析器</h6>
+                            </div>
+                            <div class="card-body">
+                                <p>创建一个简单的日志分析工具：</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-header">
+                                        <span>💻 练习代码</span>
+                                        <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                                    </div>
+                                    <pre><code class="language-python">import re
+from collections import Counter
+
+# 模拟日志数据
+log_data = """
+2024-03-15 10:30:15 INFO 192.168.1.100 GET /api/users 200 0.045s
+2024-03-15 10:30:16 ERROR 192.168.1.101 POST /api/login 401 0.120s
+2024-03-15 10:30:17 INFO 192.168.1.102 GET /api/products 200 0.032s
+2024-03-15 10:30:18 WARNING 192.168.1.100 GET /api/users 404 0.015s
+2024-03-15 10:30:19 ERROR 192.168.1.103 POST /api/orders 500 0.890s
+2024-03-15 10:30:20 INFO 192.168.1.101 GET /api/dashboard 200 0.067s
+2024-03-15 10:30:21 ERROR 192.168.1.102 DELETE /api/users/123 403 0.023s
+"""
+
+class LogAnalyzer:
+    def __init__(self):
+        # 日志格式的正则表达式
+        self.log_pattern = r'(\d{4}-\d{2}-\d{2}) (\d{2}:\d{2}:\d{2}) (\w+) (\d+\.\d+\.\d+\.\d+) (\w+) ([^\s]+) (\d+) ([\d.]+)s'
+        
+    def parse_log_line(self, line):
+        """解析单行日志"""
+        match = re.match(self.log_pattern, line.strip())
+        if match:
+            return {
+                'date': match.group(1),
+                'time': match.group(2),
+                'level': match.group(3),
+                'ip': match.group(4),
+                'method': match.group(5),
+                'path': match.group(6),
+                'status': int(match.group(7)),
+                'response_time': float(match.group(8))
+            }
+        return None
+    
+    def analyze_logs(self, log_text):
+        """分析日志文本"""
+        lines = log_text.strip().split('\n')
+        parsed_logs = []
+        
+        for line in lines:
+            parsed = self.parse_log_line(line)
+            if parsed:
+                parsed_logs.append(parsed)
+        
+        return self.generate_report(parsed_logs)
+    
+    def generate_report(self, logs):
+        """生成分析报告"""
+        if not logs:
+            return "没有有效的日志数据"
+        
+        # 统计各种指标
+        levels = [log['level'] for log in logs]
+        ips = [log['ip'] for log in logs]
+        methods = [log['method'] for log in logs]
+        status_codes = [log['status'] for log in logs]
+        response_times = [log['response_time'] for log in logs]
+        
+        level_count = Counter(levels)
+        ip_count = Counter(ips)
+        method_count = Counter(methods)
+        status_count = Counter(status_codes)
+        
+        # 计算响应时间统计
+        avg_response_time = sum(response_times) / len(response_times)
+        max_response_time = max(response_times)
+        min_response_time = min(response_times)
+        
+        # 生成报告
+        report = f"""
+=== 日志分析报告 ===
+总日志条数: {len(logs)}
+
+=== 日志级别分布 ===
+"""
+        for level, count in level_count.most_common():
+            percentage = (count / len(logs)) * 100
+            report += f"{level:8}: {count:3} 条 ({percentage:5.1f}%)\n"
+        
+        report += f"""
+=== IP地址访问统计 ===
+"""
+        for ip, count in ip_count.most_common():
+            report += f"{ip:15}: {count} 次访问\n"
+        
+        report += f"""
+=== HTTP方法统计 ===
+"""
+        for method, count in method_count.most_common():
+            report += f"{method:6}: {count} 次\n"
+        
+        report += f"""
+=== 状态码统计 ===
+"""
+        for status, count in status_count.most_common():
+            status_name = self.get_status_name(status)
+            report += f"{status} ({status_name:12}): {count} 次\n"
+        
+        report += f"""
+=== 响应时间统计 ===
+平均响应时间: {avg_response_time:.3f}s
+最长响应时间: {max_response_time:.3f}s
+最短响应时间: {min_response_time:.3f}s
+
+=== 错误分析 ===
+"""
+        error_logs = [log for log in logs if log['level'] == 'ERROR']
+        if error_logs:
+            report += f"错误总数: {len(error_logs)}\n"
+            report += "错误详情:\n"
+            for log in error_logs:
+                report += f"  {log['time']} {log['ip']} {log['method']} {log['path']} → {log['status']}\n"
+        else:
+            report += "没有错误日志\n"
+        
+        return report
+    
+    def get_status_name(self, status_code):
+        """获取状态码名称"""
+        status_names = {
+            200: "成功",
+            401: "未授权", 
+            403: "禁止访问",
+            404: "未找到",
+            500: "服务器错误"
+        }
+        return status_names.get(status_code, "其他")
+    
+    def find_suspicious_activity(self, logs):
+        """查找可疑活动"""
+        print("\n=== 可疑活动检测 ===")
+        
+        # 查找频繁访问的IP
+        ip_count = Counter(log['ip'] for log in logs)
+        for ip, count in ip_count.most_common(3):
+            if count >= 3:
+                print(f"高频访问IP: {ip} ({count}次)")
+        
+        # 查找失败的登录尝试
+        login_failures = [log for log in logs if 'login' in log['path'] and log['status'] == 401]
+        if login_failures:
+            print(f"登录失败尝试: {len(login_failures)}次")
+            for log in login_failures:
+                print(f"  {log['time']} {log['ip']}")
+        
+        # 查找慢请求
+        slow_requests = [log for log in logs if log['response_time'] > 0.5]
+        if slow_requests:
+            print(f"慢请求 (>0.5s): {len(slow_requests)}个")
+            for log in slow_requests:
+                print(f"  {log['path']} {log['response_time']}s")
+
+# 使用日志分析器
+analyzer = LogAnalyzer()
+report = analyzer.analyze_logs(log_data)
+print(report)
+
+# 解析日志以便进一步分析
+lines = log_data.strip().split('\n')
+parsed_logs = [analyzer.parse_log_line(line) for line in lines if analyzer.parse_log_line(line)]
+
+# 可疑活动检测
+analyzer.find_suspicious_activity(parsed_logs)
+
+print("\n=== 高级搜索示例 ===")
+# 查找特定模式
+error_pattern = r'ERROR.*(\d+\.\d+\.\d+\.\d+).*(\d{3})'
+errors = re.findall(error_pattern, log_data)
+print("ERROR日志中的IP和状态码:", errors)
+
+# 提取API端点
+api_pattern = r'GET|POST|PUT|DELETE)\s+(/api/[^\s]+)'
+apis = re.findall(api_pattern, log_data)
+api_count = Counter(apis)
+print("\nAPI端点访问统计:")
+for api, count in api_count.most_common():
+    print(f"  {api}: {count}次")</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 章节总结 -->
+                    <section class="mb-4">
+                        <div class="card bg-light">
+                            <div class="card-header">
+                                <h5>📋 本章总结</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li><strong>基本概念</strong>：正则表达式是强大的文本模式匹配工具</li>
+                                    <li><strong>元字符</strong>：. ^ $ * + ? \d \w \s 等特殊字符</li>
+                                    <li><strong>量词</strong>：{n} {n,} {n,m} 控制重复次数</li>
+                                    <li><strong>分组</strong>：() 用于分组，| 用于选择</li>
+                                    <li><strong>re模块</strong>：search, findall, match, sub, split等函数</li>
+                                    <li><strong>实用模式</strong>：邮箱、电话、URL等常见验证模式</li>
+                                    <li>正则表达式强大但复杂，需要多练习才能熟练掌握</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 导航按钮 -->
+                    <div class="d-flex justify-content-between mb-4">
+                        <a href="chapter9.html" class="btn btn-outline-primary">← 上一章：字符串处理</a>
+                        <a href="../index.html" class="btn btn-success">🎉 课程完成！返回首页</a>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入必要的JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <script src="../assets/js/tutorial-interactive.js"></script>
+</body>
+</html>

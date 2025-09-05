@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第6章：字典与集合 - Python编程教程</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">🐍 Python教程</a>
+            <div class="navbar-nav ms-auto">
+                <span class="navbar-text me-3">
+                    <span class="python-status">Python状态: <span id="python-status">准备中...</span></span>
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-5 pt-3">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="sidebar">
+                    <div class="sidebar-sticky">
+                        <div class="sidebar-content">
+                            <nav class="nav flex-column">
+                                <a class="nav-link" href="chapter1.html">第1章：Python简介</a>
+                                <a class="nav-link" href="chapter2.html">第2章：变量与数据类型</a>
+                                <a class="nav-link" href="chapter3.html">第3章：运算符</a>
+                                <a class="nav-link" href="chapter4.html">第4章：控制结构</a>
+                                <a class="nav-link" href="chapter5.html">第5章：列表与元组</a>
+                                <a class="nav-link active" href="chapter6.html">第6章：字典与集合</a>
+                                <a class="nav-link" href="chapter7.html">第7章：函数</a>
+                                <a class="nav-link" href="chapter8.html">第8章：模块与包</a>
+                                <a class="nav-link" href="chapter9.html">第9章：字符串处理</a>
+                                <a class="nav-link" href="chapter10.html">第10章：正则表达式</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-9">
+                <main>
+                    <h1>第6章：字典与集合</h1>
+
+                    <!-- 学习目标 -->
+                    <section class="mb-4">
+                        <div class="card bg-light">
+                            <div class="card-header">
+                                <h5>🎯 学习目标</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>理解字典的概念和特点</li>
+                                    <li>掌握字典的创建和基本操作</li>
+                                    <li>学会使用字典的常用方法</li>
+                                    <li>理解集合的概念和用途</li>
+                                    <li>掌握集合的操作和应用</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 知识点1：字典基础 -->
+                    <section class="mb-4">
+                        <h2>📚 字典基础</h2>
+                        <p>字典（Dictionary）是一种键值对（key-value）的数据结构，用大括号{}表示。字典是无序的、可变的，键必须是唯一的。</p>
+
+                        <h3>创建字典</h3>
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 创建字典</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 创建空字典
+empty_dict = {}
+print("空字典:", empty_dict)
+
+# 创建有数据的字典
+student = {
+    "name": "张三",
+    "age": 20,
+    "major": "计算机科学"
+}
+print("学生信息:", student)
+
+# 使用dict()函数创建
+scores = dict(语文=85, 数学=92, 英语=78)
+print("成绩字典:", scores)
+
+# 从列表创建字典
+subjects = ["语文", "数学", "英语"]
+grades = [85, 92, 78]
+subject_grades = dict(zip(subjects, grades))
+print("科目成绩:", subject_grades)</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 知识点2：字典操作 -->
+                    <section class="mb-4">
+                        <h2>🔧 字典操作</h2>
+                        
+                        <h3>访问和修改字典</h3>
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 访问字典元素</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python">student = {
+    "name": "张三",
+    "age": 20,
+    "major": "计算机科学"
+}
+
+# 访问字典值
+print("姓名:", student["name"])
+print("年龄:", student.get("age"))
+
+# get()方法的优势 - 不存在时返回默认值
+print("身高:", student.get("height", "未知"))
+
+# 修改字典值
+student["age"] = 21
+print("更新年龄后:", student)
+
+# 添加新键值对
+student["gender"] = "男"
+print("添加性别后:", student)</code></pre>
+                        </div>
+
+                        <h3>删除字典元素</h3>
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 删除字典元素</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python">student = {
+    "name": "张三",
+    "age": 20,
+    "major": "计算机科学",
+    "gender": "男"
+}
+print("原始字典:", student)
+
+# 使用del删除
+del student["gender"]
+print("删除性别后:", student)
+
+# 使用pop()删除并返回值
+age = student.pop("age")
+print("弹出的年龄:", age)
+print("弹出后字典:", student)
+
+# 使用pop()删除不存在的键（提供默认值）
+height = student.pop("height", "未设置")
+print("尝试获取身高:", height)</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 知识点3：字典方法 -->
+                    <section class="mb-4">
+                        <h2>📋 字典方法</h2>
+                        
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 字典方法</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python">scores = {
+    "语文": 85,
+    "数学": 92,
+    "英语": 78,
+    "物理": 88
+}
+
+# keys() - 获取所有键
+print("所有科目:", list(scores.keys()))
+
+# values() - 获取所有值
+print("所有成绩:", list(scores.values()))
+
+# items() - 获取所有键值对
+print("科目和成绩:")
+for subject, score in scores.items():
+    print(f"  {subject}: {score}分")
+
+# update() - 更新字典
+new_scores = {"化学": 90, "生物": 85}
+scores.update(new_scores)
+print("更新后的成绩:", scores)
+
+# clear() - 清空字典
+temp_dict = {"a": 1, "b": 2}
+print("清空前:", temp_dict)
+temp_dict.clear()
+print("清空后:", temp_dict)</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 知识点4：字典推导式 -->
+                    <section class="mb-4">
+                        <h2>🚀 字典推导式</h2>
+                        
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 字典推导式</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 基本字典推导式
+squares = {x: x**2 for x in range(1, 6)}
+print("平方字典:", squares)
+
+# 条件过滤
+scores = {"语文": 85, "数学": 92, "英语": 78, "物理": 88}
+high_scores = {subject: score for subject, score in scores.items() if score >= 85}
+print("高分科目:", high_scores)
+
+# 转换值
+celsius = {"北京": 25, "上海": 28, "广州": 30}
+fahrenheit = {city: temp * 9/5 + 32 for city, temp in celsius.items()}
+print("华氏温度:", fahrenheit)
+
+# 从列表创建字典
+words = ["apple", "banana", "cherry"]
+word_lengths = {word: len(word) for word in words}
+print("单词长度:", word_lengths)</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 知识点5：集合 -->
+                    <section class="mb-4">
+                        <h2>🔵 集合（Set）</h2>
+                        <p>集合是无序的、不重复的元素集合，用大括号{}表示，主要用于去重和集合运算。</p>
+
+                        <h3>创建和基本操作</h3>
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 集合基础操作</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 创建集合
+fruits = {"苹果", "香蕉", "橙子"}
+print("水果集合:", fruits)
+
+# 从列表创建集合（自动去重）
+numbers = [1, 2, 2, 3, 3, 4, 5]
+unique_numbers = set(numbers)
+print("去重后的数字:", unique_numbers)
+
+# 添加元素
+fruits.add("葡萄")
+print("添加葡萄:", fruits)
+
+# 添加多个元素
+fruits.update(["西瓜", "芒果"])
+print("批量添加:", fruits)
+
+# 删除元素
+fruits.remove("香蕉")  # 不存在会报错
+print("删除香蕉:", fruits)
+
+fruits.discard("草莓")  # 不存在不会报错
+print("尝试删除草莓:", fruits)</code></pre>
+                        </div>
+
+                        <h3>集合运算</h3>
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 集合运算</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 定义两个集合
+class_a = {"张三", "李四", "王五", "赵六"}
+class_b = {"王五", "赵六", "钱七", "孙八"}
+
+print("A班学生:", class_a)
+print("B班学生:", class_b)
+
+# 并集 - 所有学生
+all_students = class_a | class_b
+print("所有学生:", all_students)
+
+# 交集 - 既在A班又在B班的学生
+common_students = class_a & class_b
+print("两班都有的学生:", common_students)
+
+# 差集 - 只在A班不在B班的学生
+only_a = class_a - class_b
+print("只在A班的学生:", only_a)
+
+# 对称差集 - 只在一个班的学生
+exclusive = class_a ^ class_b
+print("只在一个班的学生:", exclusive)
+
+# 判断关系
+print("A班是否是所有学生的子集:", class_a <= all_students)
+print("两班是否有交集:", bool(class_a & class_b))</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 实践练习 -->
+                    <section class="mb-4">
+                        <h2>💻 实践练习</h2>
+                        
+                        <h3>练习1：学生成绩管理</h3>
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 学生成绩管理</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 学生成绩数据
+students = {
+    "张三": {"语文": 85, "数学": 92, "英语": 78},
+    "李四": {"语文": 90, "数学": 88, "英语": 85},
+    "王五": {"语文": 78, "数学": 95, "英语": 82}
+}
+
+# 计算每个学生的总分和平均分
+for name, scores in students.items():
+    total = sum(scores.values())
+    average = total / len(scores)
+    print(f"{name}: 总分={total}, 平均分={average:.1f}")
+
+# 找出每科的最高分
+subjects = ["语文", "数学", "英语"]
+for subject in subjects:
+    max_score = max(student[subject] for student in students.values())
+    top_student = [name for name, scores in students.items() 
+                   if scores[subject] == max_score][0]
+    print(f"{subject}最高分: {top_student} {max_score}分")
+
+# 计算班级各科平均分
+for subject in subjects:
+    avg_score = sum(student[subject] for student in students.values()) / len(students)
+    print(f"{subject}班级平均分: {avg_score:.1f}")
+</code></pre>
+                        </div>
+
+                        <h3>练习2：文本分析</h3>
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 文本分析</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 文本处理
+text = "python是一门优秀的编程语言python功能强大python易于学习"
+
+# 统计字符出现次数
+char_count = {}
+for char in text:
+    char_count[char] = char_count.get(char, 0) + 1
+
+# 显示出现次数最多的字符
+sorted_chars = sorted(char_count.items(), key=lambda x: x[1], reverse=True)
+print("字符出现频率（前5个）:")
+for char, count in sorted_chars[:5]:
+    print(f"'{char}': {count}次")
+
+# 统计词语出现次数
+words = text.split()
+word_count = {}
+for word in words:
+    word_count[word] = word_count.get(word, 0) + 1
+
+print("\n词语出现次数:")
+for word, count in word_count.items():
+    print(f"'{word}': {count}次")
+
+# 获取唯一字符
+unique_chars = set(text)
+print(f"\n文本中包含 {len(unique_chars)} 个不同的字符")
+print("唯一字符:", ''.join(sorted(unique_chars)))</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 章节总结 -->
+                    <section class="mb-4">
+                        <div class="card bg-light">
+                            <div class="card-header">
+                                <h5>📋 本章总结</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>字典是键值对结构，支持快速查找和修改</li>
+                                    <li>字典的键必须是不可变类型，值可以是任意类型</li>
+                                    <li>常用字典方法：get()、keys()、values()、items()、update()</li>
+                                    <li>集合用于存储唯一元素，支持数学集合运算</li>
+                                    <li>集合运算：并集(|)、交集(&)、差集(-)、对称差集(^)</li>
+                                    <li>字典和集合推导式提供简洁的创建语法</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 导航按钮 -->
+                    <div class="d-flex justify-content-between mb-4">
+                        <a href="chapter5.html" class="btn btn-outline-primary">← 上一章：列表与元组</a>
+                        <a href="chapter7.html" class="btn btn-primary">下一章：函数 →</a>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <script src="../assets/js/thebe-config.js"></script>
+</body>
+</html>

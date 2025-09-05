@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第3章：运算符与表达式 - Python交互式教程</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">🐍 Python交互式教程</a>
+            <div class="navbar-nav ms-auto">
+                <span class="nav-link text-light">
+                    <span id="python-status">⏳ Python环境加载中...</span>
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-3">
+                <!-- 目录侧边栏 -->
+                <div class="sticky-top" style="top: 1rem;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6>📚 课程目录</h6>
+                        </div>
+                        <div class="card-body p-2">
+                            <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="chapter1.html">第1章：Python基础</a>
+                                <a class="nav-link" href="chapter2.html">第2章：变量与数据类型</a>
+                                <a class="nav-link active" href="chapter3.html">第3章：运算符与表达式</a>
+                                <a class="nav-link" href="chapter4.html">第4章：控制结构</a>
+                                <a class="nav-link" href="chapter5.html">第5章：列表与元组</a>
+                                <a class="nav-link" href="chapter6.html">第6章：字典与集合</a>
+                                <a class="nav-link" href="chapter7.html">第7章：函数</a>
+                                <a class="nav-link" href="chapter8.html">第8章：模块与包</a>
+                                <a class="nav-link" href="chapter9.html">第9章：字符串处理</a>
+                                <a class="nav-link" href="chapter10.html">第10章：正则表达式</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-9">
+                <main>
+                    <!-- 章节标题 -->
+                    <div class="chapter-header">
+                        <h1>🧮 第3章：运算符与表达式</h1>
+                        <p class="lead">学习Python中的各种运算符，让计算机帮我们进行数学运算和逻辑判断。</p>
+                    </div>
+
+                    <!-- 学习目标 -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5>🎯 学习目标</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li>掌握算术运算符的使用</li>
+                                <li>学会比较运算符和逻辑运算符</li>
+                                <li>理解运算符的优先级</li>
+                                <li>学会使用赋值运算符</li>
+                                <li>了解表达式的概念和计算</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 知识点1：算术运算符 -->
+                    <section class="mb-4">
+                        <h3>➕ 算术运算符</h3>
+                        <p>算术运算符用于执行基本的数学运算：</p>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>运算符</th>
+                                        <th>名称</th>
+                                        <th>示例</th>
+                                        <th>结果</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>+</td><td>加法</td><td>5 + 3</td><td>8</td></tr>
+                                    <tr><td>-</td><td>减法</td><td>5 - 3</td><td>2</td></tr>
+                                    <tr><td>*</td><td>乘法</td><td>5 * 3</td><td>15</td></tr>
+                                    <tr><td>/</td><td>除法</td><td>5 / 2</td><td>2.5</td></tr>
+                                    <tr><td>//</td><td>整除</td><td>5 // 2</td><td>2</td></tr>
+                                    <tr><td>%</td><td>取余</td><td>5 % 2</td><td>1</td></tr>
+                                    <tr><td>**</td><td>幂运算</td><td>2 ** 3</td><td>8</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 算术运算示例</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 算术运算符示例
+a = 10
+b = 3
+
+print("加法:", a + b)      # 13
+print("减法:", a - b)      # 7
+print("乘法:", a * b)      # 30
+print("除法:", a / b)      # 3.333...
+print("整除:", a // b)     # 3
+print("取余:", a % b)      # 1
+print("幂运算:", a ** b)   # 1000
+
+# 实际应用：计算圆的面积
+import math
+radius = 5
+area = math.pi * radius ** 2
+print(f"半径为{radius}的圆的面积: {area:.2f}")</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 知识点2：比较运算符 -->
+                    <section class="mb-4">
+                        <h3>⚖️ 比较运算符</h3>
+                        <p>比较运算符用于比较两个值，返回True或False：</p>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>运算符</th>
+                                        <th>名称</th>
+                                        <th>示例</th>
+                                        <th>结果</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>==</td><td>等于</td><td>5 == 5</td><td>True</td></tr>
+                                    <tr><td>!=</td><td>不等于</td><td>5 != 3</td><td>True</td></tr>
+                                    <tr><td>&gt;</td><td>大于</td><td>5 &gt; 3</td><td>True</td></tr>
+                                    <tr><td>&lt;</td><td>小于</td><td>5 &lt; 3</td><td>False</td></tr>
+                                    <tr><td>&gt;=</td><td>大于等于</td><td>5 &gt;= 5</td><td>True</td></tr>
+                                    <tr><td>&lt;=</td><td>小于等于</td><td>5 &lt;= 3</td><td>False</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 比较运算示例</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 比较运算符示例
+score1 = 85
+score2 = 92
+
+print("score1 == score2:", score1 == score2)  # False
+print("score1 != score2:", score1 != score2)  # True
+print("score1 > 80:", score1 > 80)           # True
+print("score1 < score2:", score1 < score2)   # True
+print("score2 >= 90:", score2 >= 90)         # True
+
+# 字符串也可以比较
+name1 = "Alice"
+name2 = "Bob"
+print("name1 < name2:", name1 < name2)       # True (按字母顺序)
+
+# 实际应用：判断成绩等级
+score = 88
+if score >= 90:
+    grade = "A"
+elif score >= 80:
+    grade = "B"
+else:
+    grade = "C"
+print(f"分数{score}对应等级: {grade}")</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 知识点3：逻辑运算符 -->
+                    <section class="mb-4">
+                        <h3>🧠 逻辑运算符</h3>
+                        <p>逻辑运算符用于组合多个条件：</p>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>运算符</th>
+                                        <th>名称</th>
+                                        <th>说明</th>
+                                        <th>示例</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>and</td><td>与</td><td>两个条件都为真时结果为真</td><td>True and False → False</td></tr>
+                                    <tr><td>or</td><td>或</td><td>至少一个条件为真时结果为真</td><td>True or False → True</td></tr>
+                                    <tr><td>not</td><td>非</td><td>条件取反</td><td>not True → False</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 逻辑运算示例</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 逻辑运算符示例
+age = 20
+has_license = True
+score = 85
+
+# and 运算符
+can_drive = age >= 18 and has_license
+print("可以开车:", can_drive)  # True
+
+# or 运算符
+is_excellent = score >= 90 or score >= 85
+print("成绩优秀:", is_excellent)  # True
+
+# not 运算符
+is_minor = not (age >= 18)
+print("是未成年人:", is_minor)  # False
+
+# 复杂条件组合
+weather = "sunny"
+temperature = 25
+is_good_day = weather == "sunny" and temperature > 20 and temperature < 30
+print("今天天气不错:", is_good_day)
+
+# 实际应用：用户权限检查
+is_admin = False
+is_owner = True
+can_delete = is_admin or is_owner
+print("可以删除文件:", can_delete)</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 知识点4：赋值运算符 -->
+                    <section class="mb-4">
+                        <h3>📝 赋值运算符</h3>
+                        <p>赋值运算符用于给变量赋值，包括复合赋值运算符：</p>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>运算符</th>
+                                        <th>示例</th>
+                                        <th>等价于</th>
+                                        <th>说明</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>=</td><td>x = 5</td><td>x = 5</td><td>简单赋值</td></tr>
+                                    <tr><td>+=</td><td>x += 3</td><td>x = x + 3</td><td>加法赋值</td></tr>
+                                    <tr><td>-=</td><td>x -= 3</td><td>x = x - 3</td><td>减法赋值</td></tr>
+                                    <tr><td>*=</td><td>x *= 3</td><td>x = x * 3</td><td>乘法赋值</td></tr>
+                                    <tr><td>/=</td><td>x /= 3</td><td>x = x / 3</td><td>除法赋值</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 赋值运算示例</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 赋值运算符示例
+score = 80
+print("初始分数:", score)
+
+# 复合赋值运算符
+score += 10  # 等价于 score = score + 10
+print("加10分后:", score)
+
+score -= 5   # 等价于 score = score - 5
+print("减5分后:", score)
+
+score *= 2   # 等价于 score = score * 2
+print("翻倍后:", score)
+
+score /= 3   # 等价于 score = score / 3
+print("除以3后:", score)
+
+# 实际应用：计数器
+counter = 0
+counter += 1  # 计数加1
+counter += 1
+counter += 1
+print("计数器值:", counter)
+
+# 实际应用：累加器
+total = 0
+numbers = [10, 20, 30, 40]
+for num in numbers:
+    total += num  # 累加
+print("总和:", total)</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 知识点5：运算符优先级 -->
+                    <section class="mb-4">
+                        <h3>🏆 运算符优先级</h3>
+                        <p>当表达式中有多个运算符时，Python按照优先级顺序计算：</p>
+                        
+                        <div class="alert alert-info">
+                            <h6>优先级顺序（从高到低）：</h6>
+                            <ol>
+                                <li><strong>括号</strong>：( )</li>
+                                <li><strong>幂运算</strong>：**</li>
+                                <li><strong>乘除</strong>：*, /, //, %</li>
+                                <li><strong>加减</strong>：+, -</li>
+                                <li><strong>比较</strong>：==, !=, &lt;, &gt;, &lt;=, &gt;=</li>
+                                <li><strong>逻辑非</strong>：not</li>
+                                <li><strong>逻辑与</strong>：and</li>
+                                <li><strong>逻辑或</strong>：or</li>
+                            </ol>
+                        </div>
+
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>💻 运算符优先级示例</span>
+                                <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                            </div>
+                            <pre><code class="language-python"># 运算符优先级示例
+result1 = 2 + 3 * 4        # 先乘后加：2 + 12 = 14
+result2 = (2 + 3) * 4      # 括号优先：5 * 4 = 20
+result3 = 2 ** 3 * 4       # 先幂运算：8 * 4 = 32
+result4 = 10 / 2 * 3       # 从左到右：5 * 3 = 15
+
+print("2 + 3 * 4 =", result1)
+print("(2 + 3) * 4 =", result2)
+print("2 ** 3 * 4 =", result3)
+print("10 / 2 * 3 =", result4)
+
+# 复杂表达式
+x = 5
+y = 3
+z = 2
+complex_result = x > y and y * z > 5 or x ** 2 < 30
+print("复杂表达式结果:", complex_result)
+
+# 建议：使用括号让表达式更清晰
+clear_result = (x > y) and ((y * z) > 5) or ((x ** 2) < 30)
+print("清晰表达式结果:", clear_result)</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 实践练习 -->
+                    <section class="mb-4">
+                        <h3>💪 实践练习</h3>
+                        <div class="card">
+                            <div class="card-header">
+                                <h6>练习1：简单计算器</h6>
+                            </div>
+                            <div class="card-body">
+                                <p>创建一个简单计算器，可以进行基本的数学运算：</p>
+                                
+                                <div class="code-example">
+                                    <div class="code-header">
+                                        <span>💻 练习代码</span>
+                                        <button class="btn btn-sm btn-primary run-code">运行代码</button>
+                                    </div>
+                                    <pre><code class="language-python"># 简单计算器
+print("=== 简单计算器 ===")
+
+# 获取两个数字
+num1 = float(input("请输入第一个数字: "))
+num2 = float(input("请输入第二个数字: "))
+
+# 进行各种运算
+print(f"\n{num1} 和 {num2} 的运算结果:")
+print(f"加法: {num1} + {num2} = {num1 + num2}")
+print(f"减法: {num1} - {num2} = {num1 - num2}")
+print(f"乘法: {num1} * {num2} = {num1 * num2}")
+
+# 避免除零错误
+if num2 != 0:
+    print(f"除法: {num1} / {num2} = {num1 / num2:.2f}")
+    print(f"整除: {num1} // {num2} = {num1 // num2}")
+    print(f"取余: {num1} % {num2} = {num1 % num2}")
+else:
+    print("除法: 不能除以零")
+
+print(f"幂运算: {num1} ** {num2} = {num1 ** num2}")
+
+# 比较运算
+print(f"\n比较运算:")
+print(f"{num1} > {num2}: {num1 > num2}")
+print(f"{num1} == {num2}: {num1 == num2}")
+print(f"{num1} != {num2}: {num1 != num2}")
+
+# 逻辑运算示例
+both_positive = num1 > 0 and num2 > 0
+either_positive = num1 > 0 or num2 > 0
+print(f"\n两个数都是正数: {both_positive}")
+print(f"至少一个是正数: {either_positive}")</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 章节总结 -->
+                    <section class="mb-4">
+                        <div class="card bg-light">
+                            <div class="card-header">
+                                <h5>📋 本章总结</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>算术运算符：+, -, *, /, //, %, ** 用于数学计算</li>
+                                    <li>比较运算符：==, !=, &gt;, &lt;, &gt;=, &lt;= 用于比较值</li>
+                                    <li>逻辑运算符：and, or, not 用于组合条件</li>
+                                    <li>赋值运算符：=, +=, -=, *=, /= 用于给变量赋值</li>
+                                    <li>运算符有优先级，使用括号可以改变计算顺序</li>
+                                    <li>表达式是由变量、常量和运算符组成的计算式</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 导航按钮 -->
+                    <div class="d-flex justify-content-between mb-4">
+                        <a href="chapter2.html" class="btn btn-outline-primary">← 上一章：变量与数据类型</a>
+                        <a href="chapter4.html" class="btn btn-primary">下一章：控制结构 →</a>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入必要的JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <script src="../assets/js/tutorial-interactive.js"></script>
+</body>
+</html>
