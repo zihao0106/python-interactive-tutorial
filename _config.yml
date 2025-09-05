@@ -1,8 +1,8 @@
 # GitHub Pages 配置
 title: Python交互式编程教程
-description: 基于JupyterLite和ThebeLab的交互式Python学习平台
-url: "https://zihao0106.github.io"
-baseurl: "/my-python-course"
+description: 基于JupyterLite和Bootstrap的交互式Python学习平台
+url: ""  # 将在GitHub Pages部署时自动设置
+baseurl: ""  # 将在GitHub Pages部署时自动设置
 
 # 构建设置
 markdown: kramdown
