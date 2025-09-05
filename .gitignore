@@ -21,6 +21,8 @@ ENV/
 *-backup.html
 *-old.html
 *_old.html
+chapter*-backup.html
+chapter*_old.html
 
 # 测试文件
 test-*.html
@@ -32,3 +34,6 @@ simple-test.html
 
 # 日志文件
 *.log
+
+# GitHub Desktop
+.github/workflows/
